@@ -32,6 +32,11 @@
         <div class="add-event">
             <h3>Post Your Event</h3>
             <form action="addevent.php" method="post" enctype="multipart/form-data">
+            <?php
+                    $username = $_GET['username'];
+                    $useremail = $_GET['useremail'];
+                ?>
+                <input type="hidden" name="username2" value="<?php echo $username; ?>">
                 <input type="hidden" name="useremail" value="<?php echo $useremail; ?>">
                 <div class="input">
                 <label>Event Name</label>

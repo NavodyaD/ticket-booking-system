@@ -49,6 +49,48 @@
         <h1 class="title1">Active Events</h1>
         <p class="title1">Active evnts</p>
         <div class="event-container">
+        <?php
+
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "ticketBookingDB";
+
+            $con = mysqli_connect($servername, $username, $password, $dbname);
+
+            if($con) {
+
+                $sql = "SELECT eventID, eventName, eventImage, eventDateTime, eventLocation FROM eventdetails";
+                $eventresult = $con->query($sql);
+
+                if($eventresult->num_rows > 0)
+                {
+                    while($row = $eventresult->fetch_assoc())
+                    {
+                        echo '<div class="event">';
+                        echo '<img src="data:image/jpeg;base64,'.base64_encode($row['eventImage']).'" />';
+                            echo '<div class="des">';
+                                echo '<span>Colombo Events</span>';
+                                echo "<h4>" . $row['eventName'] . "</h4>";
+                                echo '<span class="details">';
+                                    echo '<i class="fa fa-calendar" aria-hidden="true"></i>';
+                                    echo "<h5>" . $row['eventDateTime'] . "</h5>";
+                                echo '</span>';
+                                echo '<span class="details">';
+                                    echo '<i class="fa fa-map-marker" aria-hidden="true"></i>';
+                                    echo "<h5>" . $row['eventLocation'] . "</h5>";
+                                echo '</span>';
+                                
+                            echo '</div>';
+                        echo '</div>';
+                    }
+                }
+            }
+            else
+            {
+                echo "Connection to Database is failed";
+            }
+        ?>
             <div class="event">
                 <img src="assets/img/event_01.jpg" alt="">
                 <div class="des">
