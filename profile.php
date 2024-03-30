@@ -1,6 +1,3 @@
-   
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +14,7 @@
             <div class="welcome">
                 <?php
                     $username = $_GET['username'];
+                    $useremail = $_GET['useremail'];
                     echo "<h2> Welcome, " . htmlspecialchars($username) . "!</h2>";
                 ?>
                 <h5>How is your day?</h5>
@@ -33,7 +31,8 @@
     <section id="post-event-section">
         <div class="add-event">
             <h3>Post Your Event</h3>
-            <form action="?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+            <form action="addevent.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="useremail" value="<?php echo $useremail; ?>">
                 <div class="input">
                 <label>Event Name</label>
                 <input type="text" id="eventname" name="eventname">
@@ -103,48 +102,3 @@
 </body>
 </html>
 
-<?php
-$useremail = "abc@g.com";
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "ticketBookingDB";
-
-    $con = mysqli_connect($servername, $username, $password, $dbname);
-
-    if($con) {
-            $eventName = $_POST["eventname"];
-            $eventDes = $_POST["eventdes"];
-            $eventImgName = $_FILES['eventimage']['name'];
-            $eventImgTempName = $_FILES['eventimage']['tmp_name'];
-            $imgFileData = addslashes(file_get_contents($eventImgTempName));
-            $eventPrice = $_POST["eventprice"];
-            $eventTktAmount = $_POST["eventticketamount"];
-            $eventDate = $_POST["eventdate"];
-            $eventLoca = $_POST["eventloca"];
-            $eventLocaUrl = $_POST["eventlocaurl"];
-        
-            $result = mysqli_query($con,"insert into eventdetails (userEmail, eventName, eventDes, eventImage, eventPrice, eventTicketAmount, eventDateTime, eventLocation, eventLocationURL) values('$useremail','$eventName','$eventDes','$imgFileData','$eventPrice','$eventTktAmount','$eventDate','$eventLoca','$eventLocaUrl')");
-        
-            if($result) {
-                echo "Successfull";
-                //header("Location: index.php?signname=" . urlencode($signname) . "&signemail=" .urlencode($signemail));
-                //exit();
-                
-            }
-            else
-            {
-                echo "Error";
-            }
-        
-    }
-    else
-    {
-        echo "Connection failed";
-    }
-}
-
- 
