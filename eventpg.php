@@ -30,21 +30,57 @@
         </div>
     </section>
 
-    <section id="heroEventPG">
+    <?php
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "ticketBookingDB";
+
+    $con = mysqli_connect($servername, $username, $password, $dbname);
+
+    if($con) {
+        $eventID = $_GET['eventid'];
+
+        $sql = "SELECT eventName, eventDes, eventPrice, eventImage, eventDateTime, eventLocation FROM eventdetails WHERE eventID = $eventID";
+        $eventdetailsresult = $con->query($sql);
+
+        $eventrow = $eventdetailsresult->fetch_assoc();
+
+        $eventName = $eventrow["eventName"];
+        $eventDes = $eventrow["eventDes"];
+        $eventPrice = $eventrow["eventPrice"];
+        $eventDateTime = $eventrow["eventDateTime"];
+        $eventLocation = $eventrow["eventLocation"];
         
+    }
+    else
+    {
+        echo "Connection to Database is failed";
+    }
+    ?>
+
+    <section id="heroEventPG">
+        <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($eventrow['eventImage']).'" />'; ?>
+
     </section>
 
     <section id="eventdetails" class="section-p1">
+
         <div class="single-event-des">
             <?php 
-                $eventID = $_GET['eventid'];
                 $useremail = urldecode($_GET['useremail']);
-                echo '<h4>' . $eventID . '</h4>';
-                echo '<h5>' . $useremail . '</h5>';
             ?>
-            <h1>ALUTH KALAWAK</h1>
-            <p>Purchase tickets to get a ultimate music experience with YAGA Live in Concert. Main Artists are IRAJ, Romesh Sugathapala, Kaizer Kaiz, Bathiya & Santhush, Wasthi, Dinesh Gamage and Kanchana Anuradhi. Held on Viaharamahadewi Open Air Theater on August 31 at 6.30 PM onwards. Your participation is warmly welcome.</p>
-            
+            <?php echo "<h1>" . $eventName . "</h1>"; ?>
+            <?php echo "<p>" . $eventDes . "</p>"; ?>
+            <span class="details">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                <?php echo "<h5>" . $eventDateTime . "</h5>" ?>
+            </span>
+            <span class="details">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <?php echo "<h5>" . $eventLocation . "</h5>"; ?>
+            </span>
         </div>
         <div class="single-event-details">
             <div class="ticket-type">
@@ -61,7 +97,7 @@
             </div>
             <div class="ticket-price">
                 <p>Total Price: </p>
-                <h4>3500 LKR</h4>
+                <?php echo "<h4>" . $eventPrice . "LKR </h4>"; ?>
             </div>
             <button>Buy Tickets</button>
         </div>

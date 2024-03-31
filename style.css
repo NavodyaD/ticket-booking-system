@@ -120,7 +120,6 @@ p {
     padding-left: 50px;
 }
 
-
 #hero {
     align-items: center;
     background-image: url("assets/img/hero_bg.jpg");
@@ -135,9 +134,9 @@ p {
     justify-content: center;
 }
 
+
 #heroEventPG {
     align-items: center;
-    background-image: url("assets/img/event_banner_1.jpg");
     height: 60vh;
     width: 100%;
     background-position: top 25% right 0;
@@ -393,6 +392,17 @@ footer .contact p{
     padding-right: 40px;
 }
 
+#eventdetails .single-event-des .details {
+    display: flex;
+    margin-top: 20px;
+}
+
+#eventdetails .single-event-des .details h5 {
+    margin-left: 15px;
+    color: rgb(93, 93, 93);
+    font-size: 16px;
+    font-weight: 300;
+}
 #eventdetails .single-event-des h1{
     padding: 20px 0 5px 0;
     font-size: 40px;
