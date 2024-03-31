@@ -22,7 +22,11 @@
         </div>
         <div class="nav-right-set">
             <a href="" class="icon"><i class="fa fa-user" aria-hidden="true"></i></a>
-            <a href="profile.php" class="purchase-btn">My Profile</a>
+            <?php 
+                $useremail = urldecode($_GET['useremail']);
+                $username = $_GET['username'];
+            ?>
+            <a href="profile.php?username=<?php echo urlencode($username); ?>&useremail=<?php echo urlencode($useremail); ?>" class="purchase-btn">My Profile</a>
         </div>
     </section>
 
@@ -32,6 +36,12 @@
 
     <section id="eventdetails" class="section-p1">
         <div class="single-event-des">
+            <?php 
+                $eventID = $_GET['eventid'];
+                $useremail = urldecode($_GET['useremail']);
+                echo '<h4>' . $eventID . '</h4>';
+                echo '<h5>' . $useremail . '</h5>';
+            ?>
             <h1>ALUTH KALAWAK</h1>
             <p>Purchase tickets to get a ultimate music experience with YAGA Live in Concert. Main Artists are IRAJ, Romesh Sugathapala, Kaizer Kaiz, Bathiya & Santhush, Wasthi, Dinesh Gamage and Kanchana Anuradhi. Held on Viaharamahadewi Open Air Theater on August 31 at 6.30 PM onwards. Your participation is warmly welcome.</p>
             

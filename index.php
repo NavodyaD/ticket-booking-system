@@ -50,6 +50,8 @@
         <p class="title1">Active evnts</p>
         <div class="event-container">
         <?php
+            $currentuseremail = $_GET['signemail'];  
+            $currentusername = $_GET['signname'];   
 
             $servername = "localhost";
             $username = "root";
@@ -67,7 +69,7 @@
                 {
                     while($row = $eventresult->fetch_assoc())
                     {
-                        echo '<div class="event">';
+                        echo '<div class="event" onclick="redirectToDetails(\'' . urlencode($row["eventID"]) . '\', \'' . urlencode($currentuseremail) . '\', \'' . urlencode($currentusername) . '\')">';
                         echo '<img src="data:image/jpeg;base64,'.base64_encode($row['eventImage']).'" />';
                             echo '<div class="des">';
                                 echo '<span>Colombo Events</span>';
@@ -91,6 +93,11 @@
                 echo "Connection to Database is failed";
             }
         ?>
+        <script>
+            function redirectToDetails(eventid, useremail, username) {
+                window.location.href = 'eventpg.php?eventid=' + encodeURIComponent(eventid) + '&useremail=' + encodeURIComponent(useremail) + '&username=' + encodeURIComponent(username);
+            }
+        </script>
             <div class="event">
                 <img src="assets/img/event_01.jpg" alt="">
                 <div class="des">
