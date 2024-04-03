@@ -23,11 +23,24 @@
     $signemail = $_POST["signemail"];
     $signpassword = $_POST["signpassword"];
 
-    $result = mysqli_query($con,"insert into userdetails values('$signname','$signphone','$signemail','$signpassword')");
+    if (isset($_POST['checkbox']) && $_POST['checkbox'] == 'on') {
+        $RID = 3;
+    } 
+    else {
+        $RID = 2;
+    }
+
+    $result = mysqli_query($con,"insert into userdetails values('$signname','$signphone','$signemail','$signpassword','$RID')");
 
     if($result) {
-        header("Location: index.php?signname=" . urlencode($signname) . "&signemail=" .urlencode($signemail));
-        exit();
+        if ($RID == 3) {
+            header("Location: bandprofile.php?signname=" . urlencode($signname) . "&signemail=" .urlencode($signemail));
+            exit();
+        }
+        else if($RID == 2) {
+            header("Location: index.php?signname=" . urlencode($signname) . "&signemail=" .urlencode($signemail));
+            exit();
+        }
         
     }
     else
@@ -57,6 +70,8 @@
             </div>
             <div id="signupspace" class="tabcontent">
             <form action="?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                <label for="checkbox">Band</label>
+                <input type="checkbox" id="checkbox" name="checkbox">
                 <div class="input">
                     <label>Name</label>
                     <input type="text" id="name" name="signname">

@@ -23,10 +23,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $eventDate = $_POST["eventdate"];
             $eventLoca = $_POST["eventloca"];
             $eventLocaUrl = $_POST["eventlocaurl"];
+            $bandEmail = $_POST["bandemail"];
         
-            $result = mysqli_query($con,"insert into eventdetails (userEmail, eventName, eventDes, eventImage, eventPrice, eventTicketAmount, eventDateTime, eventLocation, eventLocationURL) values('$userEmail','$eventName','$eventDes','$imgFileData','$eventPrice','$eventTktAmount','$eventDate','$eventLoca','$eventLocaUrl')");
+            $result = mysqli_query($con,"insert into eventdetails (userEmail, eventName, eventDes, eventImage, eventPrice, eventTicketAmount, eventDateTime, eventLocation, eventLocationURL, bandEmail) values('$userEmail','$eventName','$eventDes','$imgFileData','$eventPrice','$eventTktAmount','$eventDate','$eventLoca','$eventLocaUrl','$bandEmail')");
         
             if($result) {
+                function viewHTML($eventName, $eventPrice, $eventTktAmount, $username2, $userEmail) {
                 //header("Location: index.php?signname=" . urlencode($signname) . "&signemail=" .urlencode($signemail));
                 echo "
                     <!DOCTYPE html>
@@ -94,6 +96,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     </body>
                     </html>
                     ";
+                        }
+                    
+                    $script = "
+                        <script>
+                        function openPopup() {
+                            var popup = window.open('', '_blank', 'width=600,height=400');
+                            popup.document.write(\"" . addslashes(viewHTML($eventName, $eventPrice, $eventTktAmount, $userName2, $userEmail)) . "\");
+                            popup.focus();
+                        }
+                        window.onload = openPopup;
+                        </script>
+                    ";
+
+                    echo $script;
                 
             }
             else

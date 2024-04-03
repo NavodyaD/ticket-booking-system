@@ -93,11 +93,31 @@
             </div>
             <div class="ticket-count">
                 <p>Select the Ticket Amount:</p>
-                <input type="number" value="1">
+                <select name="ticketcountdropdown" id="ticketcountdropdown">
+                    <option value="1">1 Ticket</option>
+                    <option value="2">2 Tickets</option>
+                    <option value="3">3 Ticket</option>
+                    <option value="4">4 Ticket</option>
+                    <option value="5">5 Ticket</option>
+                </select>
             </div>
             <div class="ticket-price">
                 <p>Total Price: </p>
-                <?php echo "<h4>" . $eventPrice . "LKR </h4>"; ?>
+                <p> Price: <span id="eventPrice"></span></p>
+                <script>
+                    document.addEventListner('DOMContentLoaded', function() {
+                    const ticketcountdropdown = document.getElementById('ticketcountdropdown');
+                    const priceText = document.getElementById('eventPrice');
+                    const ticketPrice = <?php echo $eventPrice; ?>;
+
+                    dropdown.addEventListner('change', function() {
+                        const ticketCount = parseInt(ticketcountdropdown.value);
+                        const totalPrice = ticketCount*ticketPrice;
+                        priceText.textContent = totalPrice.toFixed(2);
+                    });
+                });
+                </script>
+                
             </div>
             <button>Buy Tickets</button>
         </div>

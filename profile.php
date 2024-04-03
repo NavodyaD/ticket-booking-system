@@ -70,6 +70,14 @@
                 <label>Location URL</label>
                 <input type="text" id="eventlocaurl" name="eventlocaurl">
                 </div>
+                <div class="input">
+                <label>Location URL</label>
+                <input type="text" id="eventlocaurl" name="eventlocaurl">
+                </div>
+                <div class="input">
+                <label>Band Email</label>
+                <input type="text" id="bandemail" name="bandemail">
+                </div>
                 <div class="event-post-button">
                     <button  type="submit">Post Event</button>
                 </div>
