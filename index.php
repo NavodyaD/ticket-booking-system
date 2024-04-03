@@ -16,8 +16,12 @@
 
         <div>
             <ul id="navbar">
-                <li><a class="active" href="index.html">Events</a></li>
-                <li><a href="bandpg.html">Bands</a></li>
+                <?php 
+                    $useremail = $_GET['signemail'];
+                    $username = $_GET['signname'];
+                ?>
+                <li><a class="active" href="index.php?signname=<?php echo urlencode($username); ?>&signemail=<?php echo urlencode($useremail); ?>">Events</a></li>
+                <li><a href="bandpg.php?username=<?php echo urlencode($username); ?>&useremail=<?php echo urlencode($useremail); ?>">Bands</a></li>
                 <li><a href="">Inquaries</a></li>
                 <li><a href="">Contact</a></li>
             </ul>

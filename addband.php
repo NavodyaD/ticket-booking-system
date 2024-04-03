@@ -101,7 +101,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         <script>
                         function openPopup() {
                             var popup = window.open('', '_blank', 'width=600,height=400');
-                            popup.document.write(\"" . addslashes(viewHTML($eventName, $eventPrice, $eventTktAmount, $currentUserName, $userEmail)) . "\");
+                            popup.document.write(\"" . addslashes(viewHTML($bandName, $bandPrice, $playersCount, $currentUserName, $userEmail)) . "\");
                             popup.focus();
                         }
                         window.onload = openPopup;

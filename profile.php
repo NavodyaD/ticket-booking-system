@@ -28,15 +28,35 @@
             </div>
         </div>
     </section>
+    <div class="popup" id="popup">
+        <h2>Thank you</h2>
+        <p>Event Added</p>
+        <button type="button">OK</button>
+    </div>
+    <?php 
+        $popupStatus = isset($_GET['popupStatus']) ? $_GET['popupStatus'] : 1;
+
+        if($popupStatus == 1)
+        {
+            echo "<script> openPopup(); </script>";
+        }
+    ?>
+    <script>
+        let popup = document.getElementById("popup");
+
+        function openPopup() {
+            popup.classList.add("open-popup");
+        }
+    </script>
     <section id="post-event-section">
         <div class="add-event">
             <h3>Post Your Event</h3>
             <form action="addevent.php" method="post" enctype="multipart/form-data">
-            <?php
+                <?php
                     $username = $_GET['username'];
                     $useremail = $_GET['useremail'];
                 ?>
-                <input type="hidden" name="username2" value="<?php echo $username; ?>">
+                <input type="hidden" name="username" value="<?php echo $username; ?>">
                 <input type="hidden" name="useremail" value="<?php echo $useremail; ?>">
                 <div class="input">
                 <label>Event Name</label>
@@ -75,8 +95,8 @@
                 <input type="text" id="eventlocaurl" name="eventlocaurl">
                 </div>
                 <div class="input">
-                <label>Band Email</label>
-                <input type="text" id="bandemail" name="bandemail">
+                <label>Band ID</label>
+                <input type="text" id="bandid" name="bandid">
                 </div>
                 <div class="event-post-button">
                     <button  type="submit">Post Event</button>

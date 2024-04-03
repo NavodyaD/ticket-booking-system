@@ -14,15 +14,19 @@
 
         <div>
             <ul id="navbar">
-                <li><a href="index.html">Events</a></li>
-                <li><a class="active" href="bandpg.html">Bands</a></li>
+                <?php
+                $useremail = $_GET['useremail'];  
+                $username = $_GET['username'];
+                ?>
+                <li><a href="index.php?signname=<?php echo urlencode($username); ?>&signemail=<?php echo urlencode($useremail); ?>">Events</a></li>
+                <li><a class="active" href="bandpg.php?username=<?php echo urlencode($username); ?>&useremail=<?php echo urlencode($useremail); ?>">Bands</a></li>
                 <li><a href="">Inquaries</a></li>
                 <li><a href="">Contact</a></li>
             </ul>
         </div>
         <div class="nav-right-set">
             <a href="" class="icon"><i class="fa fa-user" aria-hidden="true"></i></a>
-            <a href="profile.php" class="purchase-btn">My Profile</a>
+            <a href="profile.php?username=<?php echo urlencode($username); ?>&useremail=<?php echo urlencode($useremail); ?>" class="purchase-btn">My Profile</a>
         </div>
     </section>
 
@@ -36,6 +40,51 @@
     <section id="band1" class="section-p1">
         
         <div class="band-container">
+            <?php
+            $currentuseremail = $_GET['useremail'];  
+            $currentusername = $_GET['username'];
+
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "ticketBookingDB";
+
+            $con = mysqli_connect($servername, $username, $password, $dbname);
+
+            if($con) {
+
+                $sql = "SELECT bandID, bandName, bandDes, bandImage, bandType, bandPrice, playersCount FROM banddetails";
+                $bandresult = $con->query($sql);
+
+                if($bandresult->num_rows > 0)
+                {
+                    while($row = $bandresult->fetch_assoc())
+                    {
+                        echo '<div class="bandpost">';
+                        echo '<img src="data:image/jpeg;base64,'.base64_encode($row['bandImage']).'" />';
+                        echo '<div class="des">';
+                        echo '<span>Colombo</span>';
+                        echo  "<h3>" . $row['bandName'] . "</h3>";
+                            echo "<p>" . $row['bandDes'] . "</p>";
+                            echo '<span class="details">';
+                            echo '<i class="fa fa-users" aria-hidden="true"></i>';
+                            echo "<h5>" . $row['playersCount'] . " Players</h5>";
+                            echo '</span>';
+                            echo '<span class="details">';
+                            echo '<i class="fa fa-music" aria-hidden="true"></i>';
+                            echo "<h5>" . $row['bandType'] . "</h5>";
+                            echo '</span>  ';
+                        echo '</div>';
+                    echo '</div>';
+                    }
+                }
+            }
+            else
+            {
+                echo "Connection to Database is failed";
+            }
+        ?>
+        
             <div class="bandpost">
                 <img src="assets/img/band_1.jpg" alt="">
                 <div class="des">
