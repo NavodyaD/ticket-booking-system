@@ -14,18 +14,18 @@
 
         <div>
             <ul id="navbar">
-                <li><a class="active" href="index.html">Events</a></li>
-                <li><a href="">Bands</a></li>
+                <?php 
+                    $useremail = urldecode($_GET['useremail']);
+                    $username = $_GET['username'];
+                ?>
+                <li><a class="active" href="index.php?signname=<?php echo urlencode($username); ?>&signemail=<?php echo urlencode($useremail); ?>">Events</a></li>
+                <li><a href="bandpg.php?username=<?php echo urlencode($username); ?>&useremail=<?php echo urlencode($useremail); ?>">Bands</a></li>
                 <li><a href="">Inquaries</a></li>
                 <li><a href="">Contact</a></li>
             </ul>
         </div>
         <div class="nav-right-set">
             <a href="" class="icon"><i class="fa fa-user" aria-hidden="true"></i></a>
-            <?php 
-                $useremail = urldecode($_GET['useremail']);
-                $username = $_GET['username'];
-            ?>
             <a href="profile.php?username=<?php echo urlencode($username); ?>&useremail=<?php echo urlencode($useremail); ?>" class="purchase-btn">My Profile</a>
         </div>
     </section>
@@ -42,7 +42,7 @@
     if($con) {
         $eventID = $_GET['eventid'];
 
-        $sql = "SELECT eventName, eventDes, eventPrice, eventImage, eventDateTime, eventLocation FROM eventdetails WHERE eventID = $eventID";
+        $sql = "SELECT eventName, eventDes, eventPrice, eventImage, eventDateTime, eventLocation, bandID FROM eventdetails WHERE eventID = $eventID";
         $eventdetailsresult = $con->query($sql);
 
         $eventrow = $eventdetailsresult->fetch_assoc();
@@ -52,7 +52,14 @@
         $eventPrice = $eventrow["eventPrice"];
         $eventDateTime = $eventrow["eventDateTime"];
         $eventLocation = $eventrow["eventLocation"];
+        $bandID = $eventrow["bandID"];
         
+        $bandsql = "SELECT bandName, bandDes, bandImage, playersCount, bandType FROM banddetails WHERE bandID = $bandID";
+        $banddetailsresult = $con->query($bandsql);
+
+        $bandrow = $banddetailsresult->fetch_assoc();
+        
+
     }
     else
     {
@@ -83,6 +90,7 @@
             </span>
         </div>
         <div class="single-event-details">
+        <form action="addpurchase.php" method="post">
             <div class="ticket-type">
                 <p>Ticket Type: </p>
                 <select>
@@ -93,6 +101,9 @@
             </div>
             <div class="ticket-count">
                 <p>Select the Ticket Amount:</p>
+                
+                <input type="hidden" name="eventID" value="<?php echo $eventID; ?>">
+                <input type="hidden" name="useremail" value="<?php echo $useremail; ?>">
                 <select name="ticketcountdropdown" id="ticketcountdropdown">
                     <option value="1">1 Ticket</option>
                     <option value="2">2 Tickets</option>
@@ -101,6 +112,7 @@
                     <option value="5">5 Ticket</option>
                 </select>
             </div>
+
             <div class="ticket-price">
                 <p>Total Price: </p>
                 <p> Price: <span id="eventPrice"></span></p>
@@ -117,10 +129,14 @@
                     });
                 });
                 </script>
-                
             </div>
-            <button>Buy Tickets</button>
-        </div>
+            
+            <div>
+                    <button  type="submit">Buy Tickets</button>
+            </div>
+            </form>
+            
+            
     </section>
 
     <div style="margin: 0px 80px;">
@@ -128,25 +144,27 @@
     </div>
 
     <section id="band1" class="section-p1">
+
+                
         
         <div class="band-container">
             <div class="bandpost">
-                <img src="assets/img/band_1.jpg" alt="">
+            <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($bandrow['bandImage']).'" />'; ?>
                 <div class="des">
                     <span>Colombo</span>
-                    <h3>Midlane Band</h3>
-                    <p>Midlane is one of leading band of Sri Lanka that has played over 200+ musical events islandwide and international. Midlane has produced several most popular songs in Sri Lanka.</p>
+                    <?php echo "<h3>" . $bandrow['bandName'] . "</h3>"; ?>
+
+                    <?php echo "<p>" . $bandrow['bandDes'] . "</p>"; ?>
                     <span class="details">
                         <i class="fa fa-users" aria-hidden="true"></i>
-                        <h5>9 Players</h5>
+                        <?php echo "<h5>" . $bandrow['playersCount'] . "</h5>"; ?>
                     </span>
                     <span class="details">
                         <i class="fa fa-music" aria-hidden="true"></i>
-                        <h5>Classic/Hipop</h5>
+                        <?php echo "<h5>" . $bandrow['bandType'] . "</h5>"; ?>
                     </span>  
                 </div>
             </div>
-
         </div>
         
     </section>
