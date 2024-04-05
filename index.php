@@ -27,7 +27,7 @@
             </ul>
         </div>
         <div class="nav-right-set">
-            <a href="" class="icon"><i class="fa fa-user" aria-hidden="true"></i></a>
+            <a href="" class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></a>
             <?php 
                 $useremail = $_GET['signemail'];
                 $username = $_GET['signname'];

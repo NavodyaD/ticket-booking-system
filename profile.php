@@ -13,19 +13,66 @@
             <img src="assets/img/user_icon.png" alt="">
             <div class="welcome">
                 <?php
-                    $username = $_GET['username'];
-                    $useremail = $_GET['useremail'];
-                    echo "<h2> Welcome, " . htmlspecialchars($username) . "!</h2>";
+                    $currentuseremail = $_GET['useremail'];  
+                    $currentusername = $_GET['username'];
+                    echo "<h2> Welcome, " . htmlspecialchars($currentusername) . "!</h2>";
                 ?>
                 <h5>How is your day?</h5>
             </div>
         </div>
+        
         <div class="history">
             <h3>Your Purchase History</h3>
-            <div class="purchased-event">
-                <h4>Ahankara Nagare</h4>
-                <p>3500LKR</p>
-            </div>
+            <p>Events you have purchased</p>
+            <?php
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "ticketBookingDB";
+
+            $con = mysqli_connect($servername, $username, $password, $dbname);
+
+            if($con) {
+
+                $sql = "SELECT purchDate, ticketCount, eventID FROM ticketpurchasedetails WHERE userEmail = ?";
+                $stmt = $con->prepare($sql);
+                // Bind the parameter to the placeholder
+                $stmt->bind_param("s", $currentuseremail);
+
+                // Execute the prepared statement
+                $stmt->execute();
+
+                // Get the result set
+                $purchresult = $stmt->get_result();
+                if($purchresult->num_rows > 0)
+                {
+                    while($row = $purchresult->fetch_assoc())
+                    {
+                        $eventID = $row['eventID'];
+
+                        $eventsql = "SELECT eventName, eventPrice, eventDateTime, eventImage FROM eventDetails WHERE eventID = $eventID";
+                        $eventDetailsResult = $con->query($eventsql);
+                        $eventDetailsRow = $eventDetailsResult->fetch_assoc();
+
+                        echo '<div class="purchased-event">';
+                        echo '<div>';
+                        echo '<img src="data:image/jpeg;base64,'.base64_encode($eventDetailsRow['eventImage']).'" />';
+                        echo '</div>';
+                        echo '<div>';
+                        echo "<h4>" . $eventDetailsRow['eventName'] . "</h4>";
+                        echo "<p>Event Datee: " . $eventDetailsRow['eventDateTime'] . "</p>";
+                        echo "<p> Purchase Date: " . $row['purchDate'] . "</p>";
+                        echo "<p> LKR " . $eventDetailsRow['eventPrice'] . " x " . $row['ticketCount'] . "</p>";
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                }
+            }
+            else
+            {
+                echo "Connection to Database is failed";
+            }
+            ?>
         </div>
     </section>
     <div class="popup" id="popup">
