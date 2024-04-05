@@ -115,6 +115,10 @@
                 </div>
                 <div class="input">
                 <label>Event Poster</label>
+                <input type="file" id="eventposter" name="eventposter">
+                </div>
+                <div class="input">
+                <label>Event Banner</label>
                 <input type="file" id="eventimage" name="eventimage">
                 </div>
                 <div class="input">
@@ -151,34 +155,7 @@
             </form>
         </div>
     </section>
-    <section id="create-band-section">
-        <div class="add-band">
-            <h3>Create Your Band</h3>
-            <div class="input">
-            <label>Band Name</label>
-            <input type="text" id="bandname" name="bandname">
-            </div>
-            <div class="input">
-            <label>Description</label>
-            <input type="text" id="banddes" name="banddes">
-            </div>
-            <div class="input">
-            <label>Players Count</label>
-            <input type="number" id="playerscount" name="playerscount">
-            </div>
-            <div class="input">
-            <label>Type</label>
-            <input type="text" id="bandtype" name="bandtype">
-            </div>
-            <div class="input">
-            <label>Band Manager Phone</label>
-            <input type="text" id="bandphone" name="bandphone">
-            </div>
-            <div class="band-post-button">
-                <button  type="submit">Create Band</button>
-            </div>
-        </div>
-    </section>
+    
 </body>
 </html>
 

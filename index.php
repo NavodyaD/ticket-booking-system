@@ -66,7 +66,7 @@
 
             if($con) {
 
-                $sql = "SELECT eventID, eventName, eventImage, eventDateTime, eventLocation FROM eventdetails";
+                $sql = "SELECT eventID, eventName, eventPoster, eventImage, eventDateTime, eventLocation FROM eventdetails";
                 $eventresult = $con->query($sql);
 
                 if($eventresult->num_rows > 0)
@@ -74,7 +74,7 @@
                     while($row = $eventresult->fetch_assoc())
                     {
                         echo '<div class="event" onclick="redirectToDetails(\'' . urlencode($row["eventID"]) . '\', \'' . urlencode($currentuseremail) . '\', \'' . urlencode($currentusername) . '\')">';
-                        echo '<img src="data:image/jpeg;base64,'.base64_encode($row['eventImage']).'" />';
+                        echo '<img src="data:image/jpeg;base64,'.base64_encode($row['eventPoster']).'" />';
                             echo '<div class="des">';
                                 echo '<span>Colombo Events</span>';
                                 echo "<h4>" . $row['eventName'] . "</h4>";

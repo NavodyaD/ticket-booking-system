@@ -101,9 +101,14 @@
             </div>
             <div class="ticket-count">
                 <p>Select the Ticket Amount:</p>
-                
+                <?php 
+                    $useremail = urldecode($_GET['useremail']);
+                    $currentusername = $_GET['username'];
+                ?>
                 <input type="hidden" name="eventID" value="<?php echo $eventID; ?>">
                 <input type="hidden" name="useremail" value="<?php echo $useremail; ?>">
+                <input type="hidden" name="username" value="<?php echo $currentusername; ?>">
+
                 <select name="ticketcountdropdown" id="ticketcountdropdown">
                     <option value="1">1 Ticket</option>
                     <option value="2">2 Tickets</option>

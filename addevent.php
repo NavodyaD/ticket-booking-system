@@ -15,9 +15,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $currentUserName = $_POST["username"];
             $eventName = $_POST["eventname"];
             $eventDes = $_POST["eventdes"];
+        // Event Poster
+            $eventPosterName = $_FILES['eventposter']['name'];
+            $eventPosterTempName = $_FILES['eventposter']['tmp_name'];
+            $imgPosterFileData = addslashes(file_get_contents($eventPosterTempName));
+        // Event Banner
             $eventImgName = $_FILES['eventimage']['name'];
             $eventImgTempName = $_FILES['eventimage']['tmp_name'];
             $imgFileData = addslashes(file_get_contents($eventImgTempName));
+
             $eventPrice = $_POST["eventprice"];
             $eventTktAmount = $_POST["eventticketamount"];
             $eventDate = $_POST["eventdate"];
@@ -25,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $eventLocaUrl = $_POST["eventlocaurl"];
             $bandID = $_POST["bandid"];
         
-            $result = mysqli_query($con,"insert into eventdetails (userEmail, eventName, eventDes, eventImage, eventPrice, eventTicketAmount, eventDateTime, eventLocation, eventLocationURL, bandID) values('$userEmail','$eventName','$eventDes','$imgFileData','$eventPrice','$eventTktAmount','$eventDate','$eventLoca','$eventLocaUrl','$bandID')");
+            $result = mysqli_query($con,"insert into eventdetails (userEmail, eventName, eventDes, eventPoster, eventImage, eventPrice, eventTicketAmount, eventDateTime, eventLocation, eventLocationURL, bandID) values('$userEmail','$eventName','$eventDes','$imgPosterFileData','$imgFileData','$eventPrice','$eventTktAmount','$eventDate','$eventLoca','$eventLocaUrl','$bandID')");
         
             if($result) {
                 $popupStatus = 1;

@@ -11,9 +11,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $con = mysqli_connect($servername, $username, $password, $dbname);
 
     if($con) {
-            $userEmail = $_POST["useremail"];
-            $eventID = $_POST["eventID"];
-            $ticketCount = $_POST["ticketcountdropdown"];
+            $userEmail = mysqli_real_escape_string($con, $_POST["useremail"]);
+            $eventID = mysqli_real_escape_string($con, $_POST["eventID"]);
+            $ticketCount = mysqli_real_escape_string($con, $_POST["ticketcountdropdown"]);
+            $currentusername = mysqli_real_escape_string($con, $_POST["username"]);
 
             /*if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Check if the dropdown value is set and not empty
@@ -30,9 +31,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
 
-        
-            $result = mysqli_query($con,"insert into ticketpurchasedetails (purchDate, ticketCount, userEmail, eventID) values(NOW(),'$ticketCount','$userEmail','$eventID')");
-        
+            $sql = "insert into ticketpurchasedetails (purchDate, ticketCount, userEmail, eventID) values(NOW(),'{$ticketCount}','{$userEmail}','{$eventID}')";
+            $result = mysqli_query($con, $sql);
+
+            $to         = $userEmail;
+            $sender     = 'navodya0831@gmail.com';
+            $mail_subject = 'Tickets Purchase Successful';
+            $email_body = '<p>Dear ' . $currentusername . '</p>';
+            $email_body .= '<p>You have purchased your tickets successfully!</p>';
+            $email_body .= '<p>Number of Tickets: ' . $ticketCount . '</p>';
+            $email_body .= '<p>Thank you for purchasing tickets from Tickets LK</p>';
+            $email_body .= '<p>Tickets LK Team</p>';
+
+            $header = "From: {$sender}\r\nContent-Type: text/html;";
+
+            $send_mail_result = mail($to, $mail_subject, $email_body, $header);
+
+            if($send_mail_result) {
+                echo 'Please checck your email';
+            }
+            else {
+                echo 'Error';
+            }
+
+
             if($result) {
                 $popupStatus = 1;
                 //header("Location: profile.php?username=" . urlencode($currentUserName) . "&useremail=" .urlencode($userEmail) . "&popupStatus=" .urlencode($popupStatus));
