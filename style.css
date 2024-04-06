@@ -639,9 +639,39 @@ footer .contact p{
     color: white;
     background-color: rgb(26, 26, 26);
 }
-  
-  
 
+#current-feedbacks {
+    margin: 20px 80px;
+}
+  
+#current-feedbacks .feedback-block {
+    padding: 0px 40px;
+    border: 1px solid #b8b8b8;
+    margin: 20px 0;
+}
+
+
+#current-feedback .star-count .star {
+    color: grey;
+}
+
+#current-feedback .star-count .star.active {
+    color: orange;
+}
+
+#current-feedbacks .feedback-block .name {
+    align-items: center;
+    display: flex;
+}
+
+#current-feedbacks .feedback-block .name i {
+    margin-right: 15px;
+    font-size: 15px;
+}
+
+#current-feedbacks .feedback-block .star-count .star {
+    padding: 0 3px;
+}
 
 
 

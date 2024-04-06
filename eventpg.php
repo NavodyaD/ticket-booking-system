@@ -178,6 +178,7 @@
         <h3>Feedbacks</h3>
     </div>
 
+
     <Section id="givefeedback">
     <form action="addfeedback.php" method="post">
         <div class="stars">
@@ -202,7 +203,7 @@
         <input type="hidden" name="username" value="<?php echo $currentusername; ?>">
         <input type="hidden" name="useremail" value="<?php echo $useremail; ?>">
         <input type="hidden" name="rating" id="rating" value="0">
-        
+
         <button type="submit" onclick="submitForm()">Send Feedback</button>
 
         <script>
@@ -242,6 +243,58 @@
 
         
     </Section>
+
+
+    <section id="current-feedbacks">
+        <h3>Feedbacks</h3>
+        <?php
+            $eventID = $_GET['eventid'];
+
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "ticketBookingDB";
+
+            $con = mysqli_connect($servername, $username, $password, $dbname);
+
+            if($con) {
+
+                $sql = "SELECT feedbackText, starCount, userEmail, userName FROM eventfddetails WHERE eventID = $eventID";
+                $feedbackResult = $con->query($sql);
+
+                if($feedbackResult->num_rows > 0)
+                {
+                    while($row = $feedbackResult->fetch_assoc())
+                    {
+                        echo '<div class="feedback-block">';
+                        echo '<div class="name">';
+                        echo '<i class="fa fa-user" aria-hidden="true"></i>';
+                        echo "<p>" . $row['userName'] . "</p>";
+                        echo '</div>';
+                        echo '<div class="star-count">';
+
+                        // PHP logic to generate stars
+                        for ($i = 1; $i <= 5; $i++) {
+                            if ($i <= $row['starCount']) {
+                                echo '<span class="star active"><i class="fa fa-star" aria-hidden="true"></i></span>';
+                            } else {
+                                echo '<span class="star"><i class="fa fa-star" aria-hidden="true"></i></span>';
+                            }
+                        }
+
+                        echo '</div>';
+                        echo "<p>" . $row['feedbackText'] . "</p>";
+                        echo '</div>';
+
+                    }
+                }
+            }
+            else
+            {
+                echo "Connection to Database is failed";
+            }
+        ?>
+    </section>
 
     <section id="newsletter" class="section-p1 section-m1">
         <div class="newstwxt">
