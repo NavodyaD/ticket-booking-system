@@ -179,17 +179,68 @@
     </div>
 
     <Section id="givefeedback">
-        <div class="starfd">
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
+    <form action="addfeedback.php" method="post">
+        <div class="stars">
+            <span class="star" data-value="1"><i class="fa fa-star" aria-hidden="true"></i></span>
+            <span class="star" data-value="2"><i class="fa fa-star" aria-hidden="true"></i></span>
+            <span class="star" data-value="3"><i class="fa fa-star" aria-hidden="true"></i></span>
+            <span class="star" data-value="4"><i class="fa fa-star" aria-hidden="true"></i></span>
+            <span class="star" data-value="5"><i class="fa fa-star" aria-hidden="true"></i></span>
         </div>
+
         <div class="addfeedback">
             <label for="inputField">Describe your experience about the event, artists and the music. </label>
-            <textarea rows="5" placeholder="Type your feedback here..."></textarea>
+            <textarea name="feedbacktext" rows="5" placeholder="Type your feedback here..."></textarea>
         </div>
+
+        <?php 
+            $eventID = $_GET['eventid'];
+            $useremail = urldecode($_GET['useremail']);
+            $currentusername = $_GET['username'];
+        ?>
+        <input type="hidden" name="eventID" value="<?php echo $eventID; ?>">
+        <input type="hidden" name="username" value="<?php echo $currentusername; ?>">
+        <input type="hidden" name="useremail" value="<?php echo $useremail; ?>">
+        <input type="hidden" name="rating" id="rating" value="0">
+        
+        <button type="submit" onclick="submitForm()">Send Feedback</button>
+
+        <script>
+            const stars = document.querySelectorAll('.star');
+            const ratingInput = document.getElementById('rating');
+
+            stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const value = parseInt(star.getAttribute('data-value'));
+                ratingInput.value = value; // Update hidden input value
+                updateStars(value); // Update stars appearance
+            });
+            });
+
+            function updateStars(value) {
+            stars.forEach((star, index) => {
+                if (index < value) {
+                star.classList.add('active');
+                } else {
+                star.classList.remove('active');
+                }
+            });
+            }
+
+            function submitForm() {
+            const selectedRating = parseInt(ratingInput.value);
+            if (selectedRating === 0) {
+                alert('Please select a rating.');
+                return;
+            }
+            // Perform form submission or other actions
+            console.log('Selected rating:', selectedRating);
+            }
+
+        </script>
+        </form>
+
+        
     </Section>
 
     <section id="newsletter" class="section-p1 section-m1">
@@ -250,7 +301,7 @@
             
         </div>
         
-    </footer> 
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
