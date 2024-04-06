@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +8,23 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 </head>
 <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"></script>
 
     <section id="header">
+        <div style="width: 150px;" id="lottieAnim"></div>
+        <script>
+        // Get a reference to the HTML element
+        var container = document.getElementById('lottieAnim');
+        
+        // Load the animation JSON file
+        var animation = bodymovin.loadAnimation({
+            container: container,
+            renderer: 'svg',     
+            loop: true,       
+            autoplay: true, 
+            path: 'assets/img/logo_data.json' // Path to your JSON animation file
+        });
+        </script>
         <a href="#"> <img src="assets/img/sample_logo.png" class="logo" alt="" width="60" height="50"></a>
 
         <div>

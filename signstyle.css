@@ -73,19 +73,23 @@ body {
 }
 
 .container .tab {
+    text-align: center;
+    margin-top: 25px;
     overflow: hidden;
     border: 0px solid #ccc;
-    background-color: rgb(249, 249, 249);
+    background-color: rgb(255, 255, 255);
     padding-left: 20px;
     padding-right: 20px;
     
 }
 
+
+
 .tab button {
     font-size: 17px;
     width: 40%;
-    color: white;
-    border: 2px solid #361a83;
+    color: rgb(0, 0, 0);
+    border: 2px solid #2e2e2e;
     background-color: rgb(255, 255, 255);
     cursor: pointer;
     padding: 18px 16px;
@@ -93,13 +97,20 @@ body {
 }
 
 .tab button:hover {
-    border: 2px solid #361a83;
-    background-color: #7257aa;
+    color: white;
+    border: 0px solid #2e2e2e;
+    background-color: #3a3a3a;
     box-sizing: border-box;
 }
 
 .tab button.active {
-    border: 2px solid #361a83;
-    background-color: #7257aa;
+    color: white;
+    border: 0px solid #361a83;
+    background-color: #3a3a3a;
     box-sizing: border-box;
+}
+
+#signupspace .band-checkbox {
+    width: 30px;
+    height: 30px;
 }

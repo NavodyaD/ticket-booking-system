@@ -66,12 +66,14 @@
         <div class="container">
             <div class="tab">
                 <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'loginspace')">Login</button>
-                <button class="tablinks" onclick="openTab(event, 'signupspace')">signup</button>
+                <button class="tablinks" onclick="openTab(event, 'signupspace')">Create New Account</button>
             </div>
             <div id="signupspace" class="tabcontent">
             <form action="?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                <label for="checkbox">Band</label>
-                <input type="checkbox" id="checkbox" name="checkbox">
+                <div class="input">
+                <label for="checkbox">Do you going to create band account?</label>
+                <input type="checkbox" id="checkbox" class="band-checkbox" name="checkbox">
+                </div>
                 <div class="input">
                     <label>Name</label>
                     <input type="text" id="name" name="signname">
@@ -92,7 +94,7 @@
                     <input type="password" id="password" name="signpassword">
                 </div>
                 <div class="button">
-                    <input class="signup-btn" type="submit" value="Submit">
+                    <input class="signup-btn" type="submit" value="Create Account">
                 </div>
                     
              </form>
@@ -111,7 +113,7 @@
                     <input type="password" id="password" name="loginpassword">
                 </div>
                 <div class="button">
-                    <input class="signup-btn" type="submit" value="Submit">
+                    <input class="signup-btn" type="submit" value="Login">
                 </div>
                 
                     
