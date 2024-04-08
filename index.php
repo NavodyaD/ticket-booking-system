@@ -11,21 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"></script>
 
     <section id="header">
-        <div style="width: 150px;" id="lottieAnim"></div>
-        <script>
-        // Get a reference to the HTML element
-        var container = document.getElementById('lottieAnim');
         
-        // Load the animation JSON file
-        var animation = bodymovin.loadAnimation({
-            container: container,
-            renderer: 'svg',     
-            loop: true,       
-            autoplay: true, 
-            path: 'assets/img/logo_data.json' // Path to your JSON animation file
-        });
-        </script>
-        <a href="#"> <img src="assets/img/sample_logo.png" class="logo" alt="" width="60" height="50"></a>
+        <a href="#"> <img src="assets/img/logo_image.png" class="logo" alt="" width="100" ></a>
 
         <div>
             <ul id="navbar">
@@ -35,7 +22,6 @@
                 ?>
                 <li><a class="active" href="index.php?signname=<?php echo urlencode($username); ?>&signemail=<?php echo urlencode($useremail); ?>">Events</a></li>
                 <li><a href="bandpg.php?username=<?php echo urlencode($username); ?>&useremail=<?php echo urlencode($useremail); ?>">Bands</a></li>
-                <li><a href="">Inquaries</a></li>
                 <li><a href="">Contact</a></li>
             </ul>
         </div>
@@ -115,101 +101,12 @@
                 window.location.href = 'eventpg.php?eventid=' + encodeURIComponent(eventid) + '&useremail=' + encodeURIComponent(useremail) + '&username=' + encodeURIComponent(username);
             }
         </script>
-            <div class="event">
-                <img src="assets/img/event_01.jpg" alt="">
-                <div class="des">
-                    <span>Colombo Events</span>
-                    <h4>AHANKARA NAGARE </h4>
-                    <span class="details">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        <h5>7th May 2024</h5>
-                    </span>
-                    <span class="details">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <h5>Viharamahadewi Open Theater</h5>
-                    </span>
-                    
-                </div>
-            </div>
-            <div class="event">
-                <img src="assets/img/ahankara_nagare.jpg" alt="">
-                <div class="des">
-                    <span>Colombo Events</span>
-                    <h4>AHANKARA NAGARE </h4>
-                    <span class="details">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        <h5>7th May 2024</h5>
-                    </span>
-                    <span class="details">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <h5>Viharamahadewi Open Theater</h5>
-                    </span>  
-                </div>
-            </div>
-            <div class="event">
-                <img src="assets/img/event_01.jpg" alt="">
-                <div class="des">
-                    <span>Colombo Events</span>
-                    <h4>AHANKARA NAGARE </h4>
-                    <span class="details">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        <h5>7th May 2024</h5>
-                    </span>
-                    <span class="details">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <h5>Viharamahadewi Open Theater</h5>
-                    </span>
-                    
-                </div>
-            </div>
-            <div class="event">
-                <img src="assets/img/event_01.jpg" alt="">
-                <div class="des">
-                    <span>Colombo Events</span>
-                    <h4>AHANKARA NAGARE </h4>
-                    <span class="details">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        <h5>7th May 2024</h5>
-                    </span>
-                    <span class="details">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <h5>Viharamahadewi Open Theater</h5>
-                    </span>
-                    
-                </div>
-            </div>
-            <div class="event">
-                <img src="assets/img/event_01.jpg" alt="">
-                <div class="des">
-                    <span>Colombo Events</span>
-                    <h4>AHANKARA NAGARE </h4>
-                    <span class="details">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        <h5>7th May 2024</h5>
-                    </span>
-                    <span class="details">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <h5>Viharamahadewi Open Theater</h5>
-                    </span>
-                    
-                </div>
-            </div>
-            <div class="event">
-                <img src="assets/img/event_01.jpg" alt="">
-                <div class="des">
-                    <span>Colombo Events</span>
-                    <h4>AHANKARA NAGARE </h4>
-                    <span class="details">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        <h5>7th May 2024</h5>
-                    </span>
-                    <span class="details">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <h5>Viharamahadewi Open Theater</h5>
-                    </span>
-                    
-                </div>
-            </div>
+            
+            
+            
+            
+            
+            
         </div>
         
     </section>
@@ -228,7 +125,7 @@
     <footer class="section-p1">
         <div class="col">
             <div class="contact">
-                <img class="logo" src="assets/img/sample_logo.png" height="80px" width="80px" alt="">
+            <img class="logo" src="assets/img/logo_image.png" width="140px" alt="">
                 <h4>Contact</h4>
                 <p><strong>Email:</strong> contact@tickets.lk</p>
                 <p><strong>Phone:</strong> 076 6929 822</p>

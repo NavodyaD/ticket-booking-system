@@ -50,13 +50,13 @@
                     {
                         $eventID = $row['eventID'];
 
-                        $eventsql = "SELECT eventName, eventPrice, eventDateTime, eventImage FROM eventDetails WHERE eventID = $eventID";
+                        $eventsql = "SELECT eventName, eventPrice, eventDateTime, eventPoster FROM eventDetails WHERE eventID = $eventID";
                         $eventDetailsResult = $con->query($eventsql);
                         $eventDetailsRow = $eventDetailsResult->fetch_assoc();
 
                         echo '<div class="purchased-event">';
                         echo '<div>';
-                        echo '<img src="data:image/jpeg;base64,'.base64_encode($eventDetailsRow['eventImage']).'" />';
+                        echo '<img src="data:image/jpeg;base64,'.base64_encode($eventDetailsRow['eventPoster']).'" />';
                         echo '</div>';
                         echo '<div>';
                         echo "<h4>" . $eventDetailsRow['eventName'] . "</h4>";

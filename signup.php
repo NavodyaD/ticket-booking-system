@@ -61,9 +61,10 @@
 <body>
     <section id="form-section">
         <div class="vector">
-            <h5>Vector Side</h5>
+            <img src="assets/img/signup_vector.jpg" alt="">
         </div>
         <div class="container">
+            <img src="assets/img/logo_image.png" alt="">
             <div class="tab">
                 <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'loginspace')">Login</button>
                 <button class="tablinks" onclick="openTab(event, 'signupspace')">Create New Account</button>

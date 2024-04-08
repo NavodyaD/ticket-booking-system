@@ -3,18 +3,30 @@ body {
 }
 
 #form-section {
+    height: 100vh;
     margin: 20px 80px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
+    align-content: center;
 }
 
 .vector {
     width: 46%;
-    background-color: grey;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.vector img {
+    width: 80%;
+    height: 80%;
 }
 
 .container {
-    height: 100%;
+    text-align: center;
+    height: 80%;
     width: 40%;
     background-color: rgb(255, 255, 255);
     box-sizing: border-box;
@@ -22,8 +34,12 @@ body {
     border-radius: 0px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
     padding-top: 0px;
-    padding-bottom: 80px;
     
+    
+}
+
+.container img {
+    height: 150px;
 }
 .container .tabcontent {
     padding-top: 80px;
@@ -61,6 +77,7 @@ body {
     color: rgb(0, 0, 0);
     width: 35%;
     padding: 10px 10px 10px 10px;
+    margin-top: 40px;
     background-color: transparent;
     border-radius: 0;
     border-width: 2px;

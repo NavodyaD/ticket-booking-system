@@ -182,3 +182,46 @@ body {
     transform: translate(-50%, -50%) scale(1);
 
 }
+
+.band-history h3 {
+    padding: 0;
+    margin: 0;
+}
+
+.band-history p {
+    padding: 10px 0;
+    margin: 0;
+    margin-bottom: 15px;
+    color: grey;
+}
+
+.band-history .purchased-event {
+    align-items: center;
+    
+    padding: 20px 20px;
+    background-color: rgb(255, 255, 255);
+    width: 260px;
+    border: 1px solid rgb(228, 228, 228);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.band-history .purchased-event h4 {
+    padding: 5px 0;
+    margin: 0;
+}
+
+.band-history .purchased-event img {
+    margin-right: 15px;
+    border-radius: 7px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.band-history .purchased-event p {
+    padding: 3px 0;
+    margin: 0;
+    color: rgb(90, 90, 90);
+    font-size: 14px;
+}

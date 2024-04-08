@@ -19,12 +19,62 @@
                 <h5>How is your day?</h5>
             </div>
         </div>
-        <div class="history">
-            <h3>Your Purchase History</h3>
-            <div class="purchased-event">
-                <h4>Ahankara Nagare</h4>
-                <p>3500LKR</p>
-            </div>
+        <div class="band-history">
+            <h3>Your Bands</h3>
+            <p>The bands added by you.</p>
+            <?php
+
+            $currentusername = $_GET['signname'];
+            $currentuseremail = $_GET['signemail'];
+
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "ticketBookingDB";
+
+            $con = mysqli_connect($servername, $username, $password, $dbname);
+
+            if($con) {
+
+                $sql = "SELECT bandName, bandImage, bandPrice, playersCount, bandType FROM banddetails WHERE userEmail = ?";
+                $stmt = $con->prepare($sql);
+                // Bind the parameter to the placeholder
+                $stmt->bind_param("s", $currentuseremail);
+
+                // Execute the prepared statement
+                $stmt->execute();
+
+                // Get the result set
+                $bandresult = $stmt->get_result();
+
+                if($bandresult->num_rows > 0)
+                {
+                    while($row = $bandresult->fetch_assoc())
+                    {
+
+                        //$eventsql = "SELECT eventName, eventPrice, eventDateTime, eventPoster FROM eventDetails WHERE eventID = $eventID";
+                        //$eventDetailsResult = $con->query($eventsql);
+                        //$eventDetailsRow = $eventDetailsResult->fetch_assoc();
+
+                        echo '<div class="purchased-event">';
+                        echo '<div>';
+                        echo '<img src="data:image/jpeg;base64,'.base64_encode($row['bandImage']).'" />';
+                        echo '</div>';
+                        echo '<div>';
+                        echo "<h4>" . $row['bandName'] . "</h4>";
+                        echo "<p> Players Count: " . $row['playersCount'] . "</p>";
+                        echo "<p> Band Type: " . $row['bandType'] . "</p>";
+                        echo "<p> LKR " . $row['bandPrice'] . "</p>";
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                }
+            }
+            else
+            {
+                echo "Connection to Database is failed";
+            }
+            ?>
         </div>
     </section>
     <section id="create-band-section">

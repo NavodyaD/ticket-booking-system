@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = mysqli_query($con,"insert into banddetails (userEmail, bandName, bandDes, bandImage, playersCount, bandType, bandPrice, bandPhone) values('$userEmail','$bandName','$bandDes','$imgFileData','$playersCount','$bandType','$bandPrice','$bandPhone')");
         
             if($result) {
-                function viewHTML($bandName, $bandPrice, $playersCount, $username2, $userEmail) {
+                //function viewHTML($bandName, $bandPrice, $playersCount, $username2, $userEmail) {
                 //header("Location: index.php?signname=" . urlencode($signname) . "&signemail=" .urlencode($signemail));
                 echo "
                     <!DOCTYPE html>
@@ -85,19 +85,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <body id='event-add-success-pg'>
                         <div class='event-added-details'>
                             <img src='assets/img/success_tick.png' alt=''>
-                            <h3>$eventName Event Added Successfully</h3>
-                            <h4>Ticket Price: $eventPrice LKR | Tickets Amount: $eventTktAmount</h4>
+                            <h3>$bandName Band Added Successfully</h3>
+                            <h4>Band Price: $bandPrice LKR | Players Count: $playersCount</h4>
                             <div class='goto-buttons'>
-                            <a href='profile.php?username=<?php echo urlencode($userName2); ?>&useremail=<?php echo urlencode($userEmail); ?>'>Go to Profile</a>
-                                <button>View Event Page</button>
-                            </div>
                         </div>
                     </body>
                     </html>
                     ";
                         }
                     
-                    $script = "
+                    /*$script = "
                         <script>
                         function openPopup() {
                             var popup = window.open('', '_blank', 'width=600,height=400');
@@ -107,8 +104,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         window.onload = openPopup;
                         </script>
                     ";
+                    */
 
-                    echo $script;
+                    
                 
             }
             else
@@ -121,7 +119,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     {
         echo "Connection failed";
     }
-}
+
 
 ?>
 

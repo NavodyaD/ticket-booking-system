@@ -50,3 +50,19 @@
     bottom: -8px;
     left: 20px;
 }
+
+
+<div style="width: 150px;" id="lottieAnim"></div>
+        <script>
+        // Get a reference to the HTML element
+        var container = document.getElementById('lottieAnim');
+        
+        // Load the animation JSON file
+        var animation = bodymovin.loadAnimation({
+            container: container,
+            renderer: 'svg',     
+            loop: true,       
+            autoplay: true, 
+            path: 'assets/img/logo_data.json' // Path to your JSON animation file
+        });
+        </script>
