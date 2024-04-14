@@ -59,7 +59,7 @@
                 {
                     while($row = $bandresult->fetch_assoc())
                     {
-                        echo '<div class="bandpost">';
+                        echo '<div class="bandpost" onclick="redirectToDetails(\'' . urlencode($row["bandID"]) . '\', \'' . urlencode($currentuseremail) . '\', \'' . urlencode($currentusername) . '\')">';
                         echo '<img src="data:image/jpeg;base64,'.base64_encode($row['bandImage']).'" />';
                         echo '<div class="des">';
                         echo '<span>Colombo</span>';
@@ -81,8 +81,14 @@
             else
             {
                 echo "Connection to Database is failed";
-            }
+            }         
         ?>
+
+        <script>
+            function redirectToDetails(bandid, useremail, username) {
+                window.location.href = 'banddetailspg.php?bandid=' + encodeURIComponent(bandid) + '&useremail=' + encodeURIComponent(useremail) + '&username=' + encodeURIComponent(username);
+            }
+        </script>
         
         </div>
         

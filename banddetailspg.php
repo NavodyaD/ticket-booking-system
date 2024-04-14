@@ -8,42 +8,205 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 </head>
 <body>
+
     <section id="header">
         <a href="#"> <img src="assets/img/logo_image.png" class="logo" alt="" width="100" ></a>
 
         <div>
             <ul id="navbar">
-                <li><a class="active" href="#">Events</a></li>
-                <li><a href="#">Bands</a></li>
-                <li><a href="#">Contact</a></li>
+                <?php 
+                    $useremail = urldecode($_GET['useremail']);
+                    $username = $_GET['username'];
+                ?>
+                <li><a class="active" href="index.php?signname=<?php echo urlencode($username); ?>&signemail=<?php echo urlencode($useremail); ?>">Events</a></li>
+                <li><a href="bandpg.php?username=<?php echo urlencode($username); ?>&useremail=<?php echo urlencode($useremail); ?>">Bands</a></li>
+                <li><a href="">Contact</a></li>
             </ul>
         </div>
         <div class="nav-right-set">
             <a href="" class="icon"><i class="fa fa-user" aria-hidden="true"></i></a>
-            <a href="">My Profile</a>
+            <a href="profile.php?username=<?php echo urlencode($username); ?>&useremail=<?php echo urlencode($useremail); ?>" class="purchase-btn">My Profile</a>
         </div>
     </section>
 
-    <section id="band-details">
+    <?php
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "ticketBookingDB";
+
+    $con = mysqli_connect($servername, $username, $password, $dbname);
+
+    if($con) {
+        $bandID = $_GET['bandid'];
+
+        $sql = "SELECT bandName, bandDes, bandPrice, bandImage, playersCount, bandType, bandPhone FROM banddetails WHERE bandID = $bandID";
+        $banddetailsresult = $con->query($sql);
+
+        $bandrow = $banddetailsresult->fetch_assoc();
+    }
+    else
+    {
+        echo "Connection to Database is failed";
+    }
+    ?>
+
+    <section id="banddetails" class="section-p1">
         <div class="main-container">
-            <div class="image-container">
-                <img src="assets/img/band_1.jpg" alt="">
-            </div>
-            <div class="details-container">
-                <h3>Wayo</h3>
-                <p>Description Here</p>
-                <span class="details">
-                    <i class="fa fa-music" aria-hidden="true"></i>
-                    <h5>Text</h5>
-                </span>
-                <span class="details">
-                    <i class="fa fa-music" aria-hidden="true"></i>
-                    <h5>Text </h5>
-                </span>
-            </div>
+
+        <div class="band-page-img">
+            <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($bandrow['bandImage']).'" />'; ?>
         </div>
+
+
+        <div class="single-band-details">
+        <form action="addpurchase.php" method="post">
+            
+            <?php echo "<h1>" . $bandrow['bandName'] . "</h1>"; ?>
+            <?php echo "<p>" . $bandrow['bandDes'] . "</p>"; ?>
+
+            <span class="details">
+                <i class="fa fa-users" aria-hidden="true"></i>
+                <?php echo "<h5>" . $bandrow['playersCount'] . "</h5>" ?>
+            </span>
+            <span class="details">
+                <i class="fa fa-music" aria-hidden="true"></i>
+                <?php echo "<h5>" . $bandrow['bandType'] . "</h5>" ?>
+            </span>
+            <span class="details">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <?php echo "<h5>" . $bandrow['bandPhone'] . "</h5>" ?>
+            </span>
+            </form>
+            </div>
+            </div>
+            
+            
     </section>
 
+
+    <div style="margin: 0px 80px;">
+        <h3>Feedbacks</h3>
+    </div>
+
+
+    <Section id="givefeedback">
+    <form action="addbandfeedback.php" method="post">
+        <div class="stars">
+            <span class="star" data-value="1"><i class="fa fa-star" aria-hidden="true"></i></span>
+            <span class="star" data-value="2"><i class="fa fa-star" aria-hidden="true"></i></span>
+            <span class="star" data-value="3"><i class="fa fa-star" aria-hidden="true"></i></span>
+            <span class="star" data-value="4"><i class="fa fa-star" aria-hidden="true"></i></span>
+            <span class="star" data-value="5"><i class="fa fa-star" aria-hidden="true"></i></span>
+        </div>
+
+        <div class="addfeedback">
+            <label for="inputField">Describe your experience about the band and music. </label>
+            <textarea name="feedbacktext" rows="5" placeholder="Type your feedback here..."></textarea>
+        </div>
+
+        <?php 
+            $bandID = $_GET['bandid'];
+            $useremail = urldecode($_GET['useremail']);
+            $currentusername = $_GET['username'];
+        ?>
+        <input type="hidden" name="bandID" value="<?php echo $bandID; ?>">
+        <input type="hidden" name="username" value="<?php echo $currentusername; ?>">
+        <input type="hidden" name="useremail" value="<?php echo $useremail; ?>">
+        <input type="hidden" name="rating" id="rating" value="0">
+
+        <button type="submit" onclick="submitForm()">Send Feedback</button>
+
+        <script>
+            const stars = document.querySelectorAll('.star');
+            const ratingInput = document.getElementById('rating');
+
+            stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const value = parseInt(star.getAttribute('data-value'));
+                ratingInput.value = value; // Update hidden input value
+                updateStars(value); // Update stars appearance
+            });
+            });
+
+            function updateStars(value) {
+            stars.forEach((star, index) => {
+                if (index < value) {
+                star.classList.add('active');
+                } else {
+                star.classList.remove('active');
+                }
+            });
+            }
+
+            function submitForm() {
+            const selectedRating = parseInt(ratingInput.value);
+            if (selectedRating === 0) {
+                alert('Please select a rating.');
+                return;
+            }
+            // Perform form submission or other actions
+            console.log('Selected rating:', selectedRating);
+            }
+
+        </script>
+        </form>
+
+        
+    </Section>
+
+
+    <section id="current-feedbacks">
+        <h3>Feedbacks</h3>
+        <?php
+            $eventID = $_GET['bandid'];
+
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "ticketBookingDB";
+
+            $con = mysqli_connect($servername, $username, $password, $dbname);
+
+            if($con) {
+
+                $sql = "SELECT feedbackText, starCount, userEmail, userName FROM bandfddetails WHERE bandID = $bandID";
+                $feedbackResult = $con->query($sql);
+
+                if($feedbackResult->num_rows > 0)
+                {
+                    while($row = $feedbackResult->fetch_assoc())
+                    {
+                        echo '<div class="feedback-block">';
+                        echo '<div class="name">';
+                        echo '<i class="fa fa-user" aria-hidden="true"></i>';
+                        echo "<p>" . $row['userName'] . "</p>";
+                        echo '</div>';
+                        echo '<div class="star-count">';
+
+                        // PHP logic to generate stars
+                        for ($i = 1; $i <= 5; $i++) {
+                            if ($i <= $row['starCount']) {
+                                echo '<span class="star active"><i class="fa fa-star" aria-hidden="true"></i></span>';
+                            } else {
+                                echo '<span class="star"><i class="fa fa-star" aria-hidden="true"></i></span>';
+                            }
+                        }
+
+                        echo '</div>';
+                        echo "<p>" . $row['feedbackText'] . "</p>";
+                        echo '</div>';
+
+                    }
+                }
+            }
+            else
+            {
+                echo "Connection to Database is failed";
+            }
+        ?>
+    </section>
 
     <section id="newsletter" class="section-p1 section-m1">
         <div class="newstwxt">
@@ -104,5 +267,6 @@
         </div>
         
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>

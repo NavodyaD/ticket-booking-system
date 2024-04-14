@@ -673,13 +673,26 @@ footer .contact p{
     padding: 0 3px;
 }
 
-#band-details {
+#banddetails .main-container {
     margin: 20px 80px;
     display: flex;
 }
 
-#band-details .main-container .image-container {
+#banddetails .main-container .band-page-img {
     width: 50%;
+}
+
+#banddetails .main-container img {
+    width: 85%;
+}
+
+.single-band-details .details {
+    display: flex;
+    margin: 15px 0px;
+}
+
+.single-band-details .details i {
+    margin-right: 15px;
 }
 
 
