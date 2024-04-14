@@ -673,6 +673,14 @@ footer .contact p{
     padding: 0 3px;
 }
 
+#band-details {
+    margin: 20px 80px;
+    display: flex;
+}
+
+#band-details .main-container .image-container {
+    width: 50%;
+}
 
 
 
