@@ -78,6 +78,10 @@
                 <i class="fa fa-phone" aria-hidden="true"></i>
                 <?php echo "<h5>" . $bandrow['bandPhone'] . "</h5>" ?>
             </span>
+            <span class="details">
+                <?php echo "<h2>Estimated Price: LKR " . $bandrow['bandPrice'] . "</h2>" ?>
+            </span>
+            <p>This is only a estimated price and the price can be confirmed after contacting the band.</p>
             </form>
             </div>
             </div>
@@ -85,9 +89,51 @@
             
     </section>
 
+    <section id="inquiry-section">
+        <div class="inquiry-form">
+            <h2>Make an Inquiry</h2>
+            <form action="addband.php" method="post" enctype="multipart/form-data">
+                <?php
+                    $bandID = $_GET['bandid'];
+                    $useremail = urldecode($_GET['useremail']);
+                ?>
+                <input type="hidden" name="bandid" value="<?php echo $bandID; ?>">
+                <input type="hidden" name="useremail" value="<?php echo $useremail; ?>">
+            <div class="input">
+                <label>Your Name</label>
+                <input type="text" id="yourname" name="yourname">
+            </div>
+            <div class="input">
+                <label>Expected Date</label>
+                <input type="text" id="expdate" name="expdate">
+            </div>
+            <div class="input">
+                <label>Location</label>
+                <input type="text" id="location" name="location">
+            </div>
+            <div class="input">
+                <label>Subject</label>
+                <input type="number" id="subject" name="subject">
+            </div>
+            <div class="input">
+                <label>Description</label>
+                <textarea name="description" rows="9" placeholder="Describe your inquiry here..."></textarea>
+            </div>
+            <div class="input">
+                <label>Phone Number</label>
+                <input type="text" id="phonenum" name="phonenum">
+            </div>
+            
+            <div class="band-post-button">
+                <button  type="submit">Send Inquiry</button>
+            </div>
+            </form>
+        </div>
+    </section>
 
-    <div style="margin: 0px 80px;">
-        <h3>Feedbacks</h3>
+
+    <div style="margin: 20px 80px; margin-top: 20px;">
+        <h3>Leave Your Feedback</h3>
     </div>
 
 

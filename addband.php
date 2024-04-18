@@ -27,8 +27,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = mysqli_query($con,"insert into banddetails (userEmail, bandName, bandDes, bandImage, playersCount, bandType, bandPrice, bandPhone) values('$userEmail','$bandName','$bandDes','$imgFileData','$playersCount','$bandType','$bandPrice','$bandPhone')");
         
             if($result) {
-                //function viewHTML($bandName, $bandPrice, $playersCount, $username2, $userEmail) {
-                //header("Location: index.php?signname=" . urlencode($signname) . "&signemail=" .urlencode($signemail));
                 echo "
                     <!DOCTYPE html>
                     <head>
@@ -87,27 +85,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                             <img src='assets/img/success_tick.png' alt=''>
                             <h3>$bandName Band Added Successfully</h3>
                             <h4>Band Price: $bandPrice LKR | Players Count: $playersCount</h4>
+                            
                             <div class='goto-buttons'>
-                        </div>
+                                <button onclick='goBack()'>Done</button>
+                            </div>
+
+                            <script>
+                                function goBack() {
+                                    window.history.back(); // Simulate clicking the browser\'s back button
+                                }
+                            </script>
+                            
                     </body>
                     </html>
                     ";
-                        }
-                    
-                    /*$script = "
-                        <script>
-                        function openPopup() {
-                            var popup = window.open('', '_blank', 'width=600,height=400');
-                            popup.document.write(\"" . addslashes(viewHTML($bandName, $bandPrice, $playersCount, $currentUserName, $userEmail)) . "\");
-                            popup.focus();
-                        }
-                        window.onload = openPopup;
-                        </script>
-                    ";
-                    */
-
-                    
-                
+                        
             }
             else
             {
@@ -119,7 +111,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     {
         echo "Connection failed";
     }
-
+}
 
 ?>
 

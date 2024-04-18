@@ -641,7 +641,7 @@ footer .contact p{
 }
 
 #current-feedbacks {
-    margin: 20px 80px;
+    margin: 40px 80px;
 }
   
 #current-feedbacks .feedback-block {
@@ -689,11 +689,73 @@ footer .contact p{
 .single-band-details .details {
     display: flex;
     margin: 15px 0px;
+    align-items: center;
 }
 
 .single-band-details .details i {
     margin-right: 15px;
 }
+
+.single-band-details .details h2 {
+    font-size: 27px;
+}
+
+#inquiry-section {
+    width: 100%;
+}
+
+.inquiry-form {
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 12px;
+    width: 900px;
+    padding: 40px 80px;
+    margin: 50px 80px;
+}
+
+.inquiry-form .input {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inquiry-form textarea,
+.inquiry-form input {
+    width: 75%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.inquiry-form button {
+    font-size: 15px;
+    text-align: center;
+    color: rgb(12, 12, 12);
+    width: 200px;
+    display: inline-block;
+    padding: 14px 15px;
+    background-color: transparent;
+    border-radius: 15px;
+    border-width: 2px;
+    border-color: rgb(22, 22, 22);
+    transition: 0.3s ease;
+    margin-top: 20px;
+}
+
+.inquiry-form button:hover {
+    color: white;
+    background-color: rgb(26, 26, 26);
+}
+
+
+
+
+
+
+
+
 
 
 
