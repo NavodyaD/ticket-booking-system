@@ -92,7 +92,7 @@
     <section id="inquiry-section">
         <div class="inquiry-form">
             <h2>Make an Inquiry</h2>
-            <form action="addband.php" method="post" enctype="multipart/form-data">
+            <form action="sendinquiry.php" method="post" enctype="multipart/form-data">
                 <?php
                     $bandID = $_GET['bandid'];
                     $useremail = urldecode($_GET['useremail']);
@@ -113,7 +113,7 @@
             </div>
             <div class="input">
                 <label>Subject</label>
-                <input type="number" id="subject" name="subject">
+                <input type="text" id="subject" name="subject">
             </div>
             <div class="input">
                 <label>Description</label>

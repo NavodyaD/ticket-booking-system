@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="profilestyle.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 </head>
 <body>
     <section id="profile-details">
@@ -77,6 +78,71 @@
             ?>
         </div>
     </section>
+
+    <section id="band-inquiries">
+        <h3>Recieved Inquiries</h3>
+
+        <?php
+
+        //$currentuseremail = $_GET['signemail'];
+        $bandID = 1;
+
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "ticketBookingDB";
+
+        $con = mysqli_connect($servername, $username, $password, $dbname);
+
+        if($con) {
+
+            $sql = "SELECT userName, inqTitle, inqDes, inqDate, inqLocation, inqPhone, userEmail FROM bandinquirydetails";
+            $stmt = $con->prepare($sql);
+            // Bind the parameter to the placeholder
+            //$stmt->bind_param("s", $bandID);
+
+            // Execute the prepared statement
+            $stmt->execute();
+
+            // Get the result set
+            $inqresult = $stmt->get_result();
+
+            if($inqresult->num_rows > 0)
+            {
+                while($row = $inqresult->fetch_assoc())
+                {
+
+                    //$eventsql = "SELECT eventName, eventPrice, eventDateTime, eventPoster FROM eventDetails WHERE eventID = $eventID";
+                    //$eventDetailsResult = $con->query($eventsql);
+                    //$eventDetailsRow = $eventDetailsResult->fetch_assoc();
+
+                    echo '<div class="inquiry-block">';
+                    echo "<p>" . $row['userName'] . "</p>";
+                    echo "<h3>" . $row['inqTitle'] . "</h3>";
+                    echo "<p>" . $row['inqDes'] . "</p>";
+                    echo '<span class="details">';
+                        echo '<i class="fa fa-calendar" aria-hidden="true"></i>';
+                        echo "<p>" . $row['inqDate'] . "</p>";
+                    echo '</span>';
+                    echo '<span class="details">';
+                        echo '<i class="fa fa-location" aria-hidden="true"></i>';
+                        echo "<p>" . $row['inqLocation'] . "</p>";
+                    echo '</span>';
+                    echo '<span class="details">';
+                        echo '<i class="fa fa-phone" aria-hidden="true"></i>';
+                        echo "<p>" . $row['inqPhone'] . "</p>";
+                    echo '</span>';
+                    echo '</div>';
+                }
+            }
+        }
+        else
+        {
+            echo "Connection to Database is failed";
+        }
+        ?>
+    </section>
+
     <section id="create-band-section">
         <div class="add-band">
             <h3>Create Your Band</h3>
