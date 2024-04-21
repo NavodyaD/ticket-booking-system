@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="profilestyle.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 </head>
 <body>
     <section id="profile-details">
@@ -95,6 +96,15 @@
             popup.classList.add("open-popup");
         }
     </script>
+
+    <section id="goto-eventdetails">
+            <?php 
+                $useremail = $_GET['useremail'];
+                $username = $_GET['username'];
+            ?>
+        <a href="profileeventdetails.php?username=<?php echo urlencode($username); ?>&useremail=<?php echo urlencode($useremail); ?>" class="purchase-btn">View Your Event Details</a>
+    </section>
+
     <section id="post-event-section">
         <div class="add-event">
             <h3>Post Your Event</h3>

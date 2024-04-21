@@ -246,3 +246,63 @@ body {
 .inquiry-block .details i {
     margin-right: 15px;
 }
+
+
+
+#youreventdetails {
+    margin: 20px 80px;
+    text-align: center;
+}
+
+.event-details-block {
+    margin-bottom: 25px;
+    padding: 25px 40px;
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 15px;
+}
+
+.event-details-block .image img {
+    border-radius: 50%;
+    margin-right: 25px;
+    height: 200px;
+    width: 200px;
+}
+
+.event-details-block img {
+    width: 100px;
+}
+
+.event-details-block .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image .nameDes {
+    width: 500px;
+    text-align: start;
+}
+
+.event-details-block .calculations {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.event-details-block .calculations .cal {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+
+.event-details-block .details {
+    display: flex;
+    align-items: center;
+}
+
+.event-details-block .details i {
+    margin-right: 15px;
+}
+
