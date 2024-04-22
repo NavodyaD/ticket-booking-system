@@ -23,8 +23,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $bandType = $_POST["bandtype"];
             $bandPrice = $_POST["bandprice"];
             $bandPhone = $_POST["bandphone"];
-        
-            $result = mysqli_query($con,"insert into banddetails (userEmail, bandName, bandDes, bandImage, playersCount, bandType, bandPrice, bandPhone) values('$userEmail','$bandName','$bandDes','$imgFileData','$playersCount','$bandType','$bandPrice','$bandPhone')");
+
+            $band_description = mysqli_real_escape_string($con, $bandDes);
+
+            $sql = "insert into banddetails (userEmail, bandName, bandDes, bandImage, playersCount, bandType, bandPrice, bandPhone) values('$userEmail','$bandName','$band_description','$imgFileData','$playersCount','$bandType','$bandPrice','$bandPhone')";
+            $result = $con->query($sql);
         
             if($result) {
                 echo "

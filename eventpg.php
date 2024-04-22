@@ -6,6 +6,43 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+
+    <?php 
+        $eventLocationURL = "https://www.google.com/maps/place/40.7128,-74.0060"; 
+    ?>
+
+    <script>
+            function initMap() {
+            var locationUrl = "<?php echo $eventLocationURL; ?>";
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: -34.397, lng: 150.644}, // Default center (can be adjusted)
+                zoom: 8 // Default zoom level (can be adjusted)
+            });
+
+            // Create a marker for the user's location
+            var marker = new google.maps.Marker({
+                position: map.center,
+                map: map,
+                title: 'User Location'
+            });
+
+            // If a location URL is provided, geocode the address and set the map center
+            if (locationUrl) {
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ 'address': locationUrl }, function(results, status) {
+                if (status === 'OK') {
+                    map.setCenter(results[0].geometry.location);
+                    marker.setPosition(results[0].geometry.location);
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+                });
+            }
+            }
+        </script>
+
 </head>
 <body>
 
@@ -41,7 +78,7 @@
     if($con) {
         $eventID = $_GET['eventid'];
 
-        $sql = "SELECT eventName, eventDes, eventPrice, eventImage, eventDateTime, eventLocation, bandID FROM eventdetails WHERE eventID = $eventID";
+        $sql = "SELECT eventName, eventDes, eventPrice, eventImage, eventDateTime, eventLocation, eventLocationURL, bandID FROM eventdetails WHERE eventID = $eventID";
         $eventdetailsresult = $con->query($sql);
 
         $eventrow = $eventdetailsresult->fetch_assoc();
@@ -51,6 +88,7 @@
         $eventPrice = $eventrow["eventPrice"];
         $eventDateTime = $eventrow["eventDateTime"];
         $eventLocation = $eventrow["eventLocation"];
+        $eventLocationURL = $eventrow["eventLocationURL"];
         $bandID = $eventrow["bandID"];
         
         $bandsql = "SELECT bandName, bandDes, bandImage, playersCount, bandType FROM banddetails WHERE bandID = $bandID";
@@ -178,6 +216,10 @@
     </div>
 
 
+    <div id="map">
+
+    </div>
+
     <Section id="givefeedback">
     <form action="addfeedback.php" method="post">
         <div class="stars">
@@ -258,7 +300,7 @@
 
             if($con) {
 
-                $sql = "SELECT feedbackText, starCount, userEmail, userName FROM eventfddetails WHERE eventID = $eventID";
+                $sql = "SELECT feedbackText, starCount, userEmail, userName FROM eventfeedbackdetails WHERE eventID = $eventID";
                 $feedbackResult = $con->query($sql);
 
                 if($feedbackResult->num_rows > 0)

@@ -217,7 +217,7 @@
 
             if($con) {
 
-                $sql = "SELECT feedbackText, starCount, userEmail, userName FROM bandfddetails WHERE bandID = $bandID";
+                $sql = "SELECT feedbackText, starCount, userEmail, userName FROM bandfeedbackdetails WHERE bandID = $bandID";
                 $feedbackResult = $con->query($sql);
 
                 if($feedbackResult->num_rows > 0)

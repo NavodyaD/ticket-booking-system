@@ -749,6 +749,16 @@ footer .contact p{
     background-color: rgb(26, 26, 26);
 }
 
+#googleMap {
+    height: 400px;
+    width: 80%;
+  }
+
+#map {
+    height: 400px;
+    width: 80%;
+}
+
 
 
 

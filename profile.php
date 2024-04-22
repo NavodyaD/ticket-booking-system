@@ -152,10 +152,6 @@
                 <input type="text" id="eventlocaurl" name="eventlocaurl">
                 </div>
                 <div class="input">
-                <label>Location URL</label>
-                <input type="text" id="eventlocaurl" name="eventlocaurl">
-                </div>
-                <div class="input">
                 <label>Band ID</label>
                 <input type="text" id="bandid" name="bandid">
                 </div>
