@@ -15,8 +15,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $eventID = $_POST["eventID"];
             $feedbackText = $_POST["feedbacktext"];
             $starCount = $_POST["rating"];
+
+            $feedback_text = mysqli_real_escape_string($con, $feedbackText);
         
-            $result = mysqli_query($con,"insert into eventfeedbackdetails (eventID, feedbackText, starCount, userEmail, userName) values('$eventID','$feedbackText','$starCount','$userEmail','$currentUserName')");
+            $result = mysqli_query($con,"insert into eventfeedbackdetails (eventID, feedbackText, starCount, userEmail, userName) values('$eventID','$feedback_text','$starCount','$userEmail','$currentUserName')");
         
             if($result) {
                 echo "Successfull";

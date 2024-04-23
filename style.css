@@ -29,7 +29,8 @@ h6 {
 }
 
 p {
-    font-size: 15px;
+    font-size: 16px;
+    line-height: 1.5;
     color: gray;
     margin: 15px 0 20px 0;
 }
@@ -206,6 +207,7 @@ p {
 }
 
 #event1 .event img {
+    height: 370px;
     width: 100%;
     border-radius: 20px;
 }
@@ -445,6 +447,10 @@ footer .contact p{
     justify-content: space-between;
 }
 
+#eventdetails .single-event-details .ticket-price h2 {
+    font-size: 30px;
+}
+
 #eventdetails .single-event-details {
     width: 40%;
     margin-right: 65px;
@@ -490,6 +496,7 @@ footer .contact p{
 #band1 .bandpost {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-top: 20px;
     flex-wrap: wrap;
 }
@@ -509,8 +516,8 @@ footer .contact p{
 
 #band1 .bandpost img {
     margin-top: 20px;
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     overflow: hidden;
 }
@@ -520,7 +527,7 @@ footer .contact p{
 }
 
 #band1 .bandpost .des {
-    width: 65%;
+    width: 70%;
     text-align: start;
     padding: 10px 0;
 
@@ -673,20 +680,29 @@ footer .contact p{
     padding: 0 3px;
 }
 
+#banddetails {
+    width: 100%;
+}
+
 #banddetails .main-container {
     margin: 20px 80px;
     display: flex;
 }
 
 #banddetails .main-container .band-page-img {
-    width: 50%;
+    width: 35%;
 }
 
 #banddetails .main-container img {
     width: 85%;
 }
 
+#banddetails .main-container .single-band-details {
+    width: 65%;
+}
+
 .single-band-details .details {
+    width: 50%;
     display: flex;
     margin: 15px 0px;
     align-items: center;
@@ -749,14 +765,15 @@ footer .contact p{
     background-color: rgb(26, 26, 26);
 }
 
-#googleMap {
-    height: 400px;
-    width: 80%;
-  }
 
 #map {
-    height: 400px;
-    width: 80%;
+    margin: 20px 80px;
+    height: 500px;
+    width: 800px;
+}
+
+#map h3 {
+    margin-bottom: 25px;
 }
 
 

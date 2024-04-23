@@ -26,7 +26,7 @@
             </ul>
         </div>
         <div class="nav-right-set">
-            <a href="" class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+            <a href="" class="icon"><i class="fa fa-bell" aria-hidden="true"></i></a>
             <?php 
                 $useremail = $_GET['signemail'];
                 $username = $_GET['signname'];
@@ -65,7 +65,7 @@
 
             if($con) {
 
-                $sql = "SELECT eventID, eventName, eventPoster, eventImage, eventDateTime, eventLocation FROM eventdetails";
+                $sql = "SELECT eventID, eventName, eventPoster, eventImage, eventDateTime, eventLocation FROM eventdetails ORDER BY eventID DESC";
                 $eventresult = $con->query($sql);
 
                 if($eventresult->num_rows > 0)

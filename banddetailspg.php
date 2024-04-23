@@ -61,30 +61,30 @@
 
 
         <div class="single-band-details">
-        <form action="addpurchase.php" method="post">
+        
             
             <?php echo "<h1>" . $bandrow['bandName'] . "</h1>"; ?>
             <?php echo "<p>" . $bandrow['bandDes'] . "</p>"; ?>
 
             <span class="details">
                 <i class="fa fa-users" aria-hidden="true"></i>
-                <?php echo "<h5>" . $bandrow['playersCount'] . "</h5>" ?>
+                <?php echo "<h4>" . $bandrow['playersCount'] . " Players</h4>" ?>
             </span>
             <span class="details">
                 <i class="fa fa-music" aria-hidden="true"></i>
-                <?php echo "<h5>" . $bandrow['bandType'] . "</h5>" ?>
+                <?php echo "<h4>" . $bandrow['bandType'] . " Music</h4>" ?>
             </span>
             <span class="details">
                 <i class="fa fa-phone" aria-hidden="true"></i>
-                <?php echo "<h5>" . $bandrow['bandPhone'] . "</h5>" ?>
+                <?php echo "<h4>" . $bandrow['bandPhone'] . "</h4>" ?>
             </span>
             <span class="details">
                 <?php echo "<h2>Estimated Price: LKR " . $bandrow['bandPrice'] . "</h2>" ?>
             </span>
             <p>This is only a estimated price and the price can be confirmed after contacting the band.</p>
-            </form>
-            </div>
-            </div>
+            
+        </div>
+        </div>
             
             
     </section>

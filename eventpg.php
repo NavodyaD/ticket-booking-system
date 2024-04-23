@@ -6,15 +6,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhr8FW-o9YmYiBIT-2e9pjue0fSIxrrZ4&callback=initMap" async defer></script>
 
-    <?php 
-        $eventLocationURL = "https://www.google.com/maps/place/40.7128,-74.0060"; 
-    ?>
 
     <script>
-            function initMap() {
-            var locationUrl = "<?php echo $eventLocationURL; ?>";
+            /*function initMap() {
+            var locationUrl = "?php echo $eventLocationURL; ?>";
 
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: {lat: -34.397, lng: 150.644}, // Default center (can be adjusted)
@@ -40,7 +37,7 @@
                 }
                 });
             }
-            }
+            }*/
         </script>
 
 </head>
@@ -156,8 +153,9 @@
             </div>
 
             <div class="ticket-price">
-                <p>Total Price: </p>
-                <p> Price: <span id="eventPrice"></span></p>
+                
+                <p> Price: <span id="eventPrice"> </span></p>
+                <h2>4500 LKR</h2>
                 <script>
                     document.addEventListner('DOMContentLoaded', function() {
                     const ticketcountdropdown = document.getElementById('ticketcountdropdown');
@@ -211,13 +209,17 @@
         
     </section>
 
+    <section id="map">
+        <h3>Location</h3>
+        <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.5647042071987!2d80.64516877581919!3d7.290264413776666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae3663118611d25%3A0xbad64cce500924c7!2sDharmaraja%20College%20Auditorium!5e0!3m2!1sen!2slk!4v1713901719398!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+       
+
     <div style="margin: 0px 80px;">
         <h3>Feedbacks</h3>
-    </div>
-
-
-    <div id="map">
-
     </div>
 
     <Section id="givefeedback">
@@ -300,7 +302,7 @@
 
             if($con) {
 
-                $sql = "SELECT feedbackText, starCount, userEmail, userName FROM eventfeedbackdetails WHERE eventID = $eventID";
+                $sql = "SELECT feedbackText, starCount, userEmail, userName FROM eventfeedbackdetails WHERE eventID = $eventID ORDER BY eventFdID DESC";
                 $feedbackResult = $con->query($sql);
 
                 if($feedbackResult->num_rows > 0)

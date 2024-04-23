@@ -232,10 +232,19 @@ body {
 }
 
 .inquiry-block {
+    align-items: center;
+    display: flex;
     margin-bottom: 25px;
     padding: 25px 40px;
+    padding-right: 80px;
     border: 1px solid rgb(219, 219, 219);
     border-radius: 15px;
+}
+
+.inquiry-block img {
+    width: 220px;
+    height: 195px;
+    margin-right: 25px;
 }
 
 .inquiry-block .details {
@@ -247,6 +256,10 @@ body {
     margin-right: 15px;
 }
 
+.inquiry-block .details-sec p {
+    line-height: 1.5;
+    color: rgb(88, 88, 88);
+}
 
 
 #youreventdetails {

@@ -35,6 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <head>
                         <style>
                             #event-add-success-pg {
+                                font-family:Arial, Helvetica, sans-serif;
                                 display: flex;
                                 justify-content: center; 
                                 align-items: center;

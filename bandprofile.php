@@ -117,7 +117,9 @@
                     //$eventDetailsRow = $eventDetailsResult->fetch_assoc();
 
                     echo '<div class="inquiry-block">';
-                    echo "<p>" . $row['userName'] . "</p>";
+                    echo '<img src="assets/img/inq_call.jpg" alt="">';
+                    echo '<div class="details-sec">';
+                    echo "<h4> Inquiry By- " . $row['userName'] . "</h4>";
                     echo "<h3>" . $row['inqTitle'] . "</h3>";
                     echo "<p>" . $row['inqDes'] . "</p>";
                     echo '<span class="details">';
@@ -125,13 +127,14 @@
                         echo "<p>" . $row['inqDate'] . "</p>";
                     echo '</span>';
                     echo '<span class="details">';
-                        echo '<i class="fa fa-location" aria-hidden="true"></i>';
+                        echo '<i class="fa fa-map-marker" aria-hidden="true"></i>';
                         echo "<p>" . $row['inqLocation'] . "</p>";
                     echo '</span>';
                     echo '<span class="details">';
                         echo '<i class="fa fa-phone" aria-hidden="true"></i>';
                         echo "<p>" . $row['inqPhone'] . "</p>";
                     echo '</span>';
+                    echo '</div>';
                     echo '</div>';
                 }
             }
@@ -142,6 +145,7 @@
         }
         ?>
     </section>
+    
 
     <section id="create-band-section">
         <div class="add-band">
