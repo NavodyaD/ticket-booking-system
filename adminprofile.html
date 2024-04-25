@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="profilestyle.css">
+</head>
+<body>
+    <section id="manageevents">
+        <div class="eventedit">
+            <form action="addpurchase.php" method="post">
+                <div class="input">
+                    <label>Enter Event ID</label>
+                    <input type="number" id="eventid" name="eventid">
+                </div>
+                <div class="input">
+                <label>What you need to edit?</label>
+                <select name="eventeditdropdown" id="eventeditdropdown">
+                    <option value="1">Event Name</option>
+                    <option value="2">Event Price</option>
+                    <option value="3">Event Ticket Amount</option>
+                    <option value="4">Event Date</option>
+                    <option value="5">Event Location</option>
+                    <option value="6">Band</option>
+                </select>
+                </div>
+                <div class="input">
+                    <label>Enter New Value</label>
+                    <input type="text" id="neweditvalue" name="neweditvalue">
+                </div>
+                <div>
+                    <button  type="submit">Perform Edit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
