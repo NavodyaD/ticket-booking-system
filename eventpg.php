@@ -8,6 +8,54 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhr8FW-o9YmYiBIT-2e9pjue0fSIxrrZ4&callback=initMap" async defer></script>
 
+    <?php
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "ticketBookingDB";
+
+    $con = mysqli_connect($servername, $username, $password, $dbname);
+
+    if($con) {
+        $eventID = $_GET['eventid'];
+
+        $sql = "SELECT eventName, eventDes, eventPrice, eventImage, eventDateTime, eventLocation, eventLocationURL, bandID FROM eventdetails WHERE eventID = $eventID";
+        $eventdetailsresult = $con->query($sql);
+
+        $eventrow = $eventdetailsresult->fetch_assoc();
+
+        $eventPrice = $eventrow["eventPrice"];
+        $eventDateTime = $eventrow["eventDateTime"];
+        
+
+    }
+    else
+    {
+        echo "Connection to Database is failed";
+    }
+    ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ticketcountdropdown = document.getElementById('ticketcountdropdown');
+            const priceText = document.getElementById('eventPriceShow');
+            const ticketPrice = <?php echo $eventPrice; ?>;
+
+            // Function to calculate total price
+            function calculateTotalPrice() {
+                const ticketCount = parseInt(ticketcountdropdown.value);
+                const totalPrice = ticketCount * ticketPrice;
+                priceText.textContent = totalPrice.toFixed(2);
+            }
+
+            // Calculate total price when the page loads
+            calculateTotalPrice();
+
+            // Calculate total price when the dropdown value changes
+            ticketcountdropdown.addEventListener('change', calculateTotalPrice);
+        });
+    </script>
+
 
     <script>
             /*function initMap() {
@@ -124,6 +172,60 @@
             </span>
         </div>
         <div class="single-event-details">
+
+        <section id="countdownSection">
+            <h3>The Event Will <span style="color: black;">Starts</span> In</h3>
+            <div class="launch-time">
+                <div>
+                    <p id="days">00</p>
+                    <span>Days</span>
+                </div>
+                <p>:</p>
+                <div>
+                    <p id="hours">00</p>
+                    <span>Hours</span>
+                </div>
+                <p>:</p>
+                <div>
+                    <p id="minutes">00</p>
+                    <span>Minutes</span>
+                </div>
+                <p>:</p>
+                <div>
+                    <p id="seconds">00</p>
+                    <span>Seconds</span>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            var countDownDate = new Date("Oct 15, 2024 00:00:00").getTime();
+            var x = setInterval(function(){
+                var now = new Date().getTime();
+                var distance = countDownDate -now;
+
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerHTML = days;
+                document.getElementById("hours").innerHTML = hours;
+                document.getElementById("minutes").innerHTML = minutes;
+                document.getElementById("seconds").innerHTML = seconds;
+
+                if(distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("days").innerHTML = "00";
+                    document.getElementById("hours").innerHTML = "00";
+                    document.getElementById("minutes").innerHTML = "00";
+                    document.getElementById("seconds").innerHTML = "00";
+                }
+
+            },1000);
+            
+        </script>
+
         <form action="addpurchase.php" method="post">
             <div class="ticket-type">
                 <p>Ticket Type: </p>
@@ -155,20 +257,8 @@
             <div class="ticket-price">
                 
                 <p> Price: <span id="eventPrice"> </span></p>
-                <h2>4500 LKR</h2>
-                <script>
-                    document.addEventListner('DOMContentLoaded', function() {
-                    const ticketcountdropdown = document.getElementById('ticketcountdropdown');
-                    const priceText = document.getElementById('eventPrice');
-                    const ticketPrice = <?php echo $eventPrice; ?>;
-
-                    dropdown.addEventListner('change', function() {
-                        const ticketCount = parseInt(ticketcountdropdown.value);
-                        const totalPrice = ticketCount*ticketPrice;
-                        priceText.textContent = totalPrice.toFixed(2);
-                    });
-                });
-                </script>
+                <h2 id="eventPriceShow"></h2>
+                
             </div>
             
             <div>
@@ -184,9 +274,6 @@
     </div>
 
     <section id="band1" class="section-p1">
-
-                
-        
         <div class="band-container">
             <div class="bandpost">
             <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($bandrow['bandImage']).'" />'; ?>
@@ -208,6 +295,8 @@
         </div>
         
     </section>
+
+    
 
     <section id="map">
         <h3>Location</h3>
@@ -399,5 +488,8 @@
         
     </footer>
     <script src="script.js"></script>
+
+    
+
 </body>
 </html>
