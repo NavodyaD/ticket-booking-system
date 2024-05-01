@@ -133,6 +133,104 @@
             </form>
         </div>
     </section>
+
+    <section id="details-tables">
+    <?php
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "ticketBookingDB";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $totalsql = "SELECT SUM(ticketCount * ticketPrice) AS totalAmount FROM ticketpurchasedetails";
+    $totalresult = $conn->query($totalsql);
+
+
+    if ($totalresult->num_rows > 0) {
+        $totalrow = $totalresult->fetch_assoc();
+
+        $totalAmount = $totalrow["totalAmount"];
+        
+        echo '<div class="totalincome">';
+        echo '<h2>Summery</h2>';
+        echo '<div class="incomeline">';
+        echo "<p>Total Ticket Selling Amount:</p>";
+        echo "<h3>" . $totalAmount .  " LKR </h3>";
+        echo '</div>';
+        $statePassFee=$totalAmount*0.08;
+        echo '<div class="incomeline">';
+        echo "<p>Income From StagePass Fee (8%):</p>";
+        echo "<h3>" . $statePassFee .  " LKR </h3>";
+        echo '</div>';
+        echo '</div>';
+    } else {
+        echo "0 results";
+    }
+
+    $eventsql = "SELECT eventID, eventName, eventPrice, eventTicketAmount, eventDateTime, eventLocation, bandID FROM eventdetails";
+    $eventresult = $conn->query($eventsql);
+
+    $bandsql = "SELECT bandID, bandName, playersCount, bandType, bandPrice, bandPhone FROM banddetails";
+    $bandresult = $conn->query($bandsql);
+
+    $purchsql = "SELECT purchaseID, purchDate, ticketCount, ticketPrice, userEmail, eventID FROM ticketpurchasedetails";
+    $purchaseresult = $conn->query($purchsql);
+
+    echo '<h2>Posted Events</h2>';
+
+    if ($eventresult->num_rows > 0) {
+        echo "<table>";
+        echo "<tr><th>Event ID</th><th>Event Name</th><th>Ticket Price</th><th>Ticket Amount</th><th>Date & Time</th><th>Location</th><th>Band ID</th></tr>";
+        while($eventrow = $eventresult->fetch_assoc()) {
+            echo "<tr><td>" . $eventrow["eventID"]. "</td><td>" . $eventrow["eventName"]. "</td><td>" . $eventrow["eventPrice"]. "</td><td>" . $eventrow["eventTicketAmount"]. "</td><td>" . $eventrow["eventDateTime"]. "</td><td>" . $eventrow["eventLocation"]. "</td><td>" . $eventrow["bandID"]. "</td></tr>";
+        }
+        echo "</table>";
+    } else 
+    {
+        
+        echo "0 results";
+    }
+
+    echo '<h2>Posted Bands</h2>';
+
+    if ($bandresult->num_rows > 0) {
+        echo "<table>";
+        echo "<tr><th>Band ID</th><th>Band Name</th><th>Players Count</th><th>Band Type</th><th>Band Price</th><th>Phone Number</th></tr>";
+        while($bandrow = $bandresult->fetch_assoc()) {
+            echo "<tr><td>" . $bandrow["bandID"]. "</td><td>" . $bandrow["bandName"]. "</td><td>" . $bandrow["playersCount"]. "</td><td>" . $bandrow["bandType"]. "</td><td>" . $bandrow["bandPrice"]. "</td><td>" . $bandrow["bandPhone"]. "</td></tr>";
+        }
+        echo "</table>";
+    } else 
+    {
+        
+        echo "0 results";
+    }
+
+    echo '<h2>Ticket Purchase Report</h2>';
+
+    if ($purchaseresult->num_rows > 0) {
+        echo "<table>";
+        echo "<tr><th>Purchase ID</th><th>Purchase Date</th><th>Ticket Count</th><th>Ticket Price</th><th>User Email</th><th>Event ID</th><th>Total Price</th></tr>";
+        while($purchrow = $purchaseresult->fetch_assoc()) {
+            $totalPrice=$purchrow["ticketCount"]*$purchrow["ticketPrice"];
+            echo "<tr><td>" . $purchrow["purchaseID"]. "</td><td>" . $purchrow["purchDate"]. "</td><td>" . $purchrow["ticketCount"]. "</td><td>" . $purchrow["ticketPrice"]. "</td><td>" . $purchrow["userEmail"]. "</td><td>" . $purchrow["eventID"]. "</td><td>" . $totalPrice. "</td></tr>";
+        }
+        echo "</table>";
+    } else 
+    {
+        
+        echo "0 results";
+    }
+
+    $conn->close();
+    ?>
+    </section>
     
 </body>
 </html>

@@ -24,18 +24,18 @@
     }
 
     .col-25 {
-      -ms-flex: 25%;
-      flex: 25%;
+      -ms-flex: 35%;
+      flex: 35%;
     }
 
     .col-50 {
-      -ms-flex: 50%;
-      flex: 50%;
+      -ms-flex: 40%;
+      flex: 40%;
     }
 
     .col-75 {
-      -ms-flex: 75%;
-      flex: 75%;
+      -ms-flex: 60%;
+      flex: 60%;
     }
 
     .col-25,
@@ -96,7 +96,7 @@
 
     span.price {
       float: right;
-      color: grey;
+      color: black;
     }
 
     /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
@@ -114,8 +114,8 @@
 
     
 
-<h2>Responsive Checkout Form</h2>
-<p>Resize the browser window to see the effect. When the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other.</p>
+<h2>Checkout</h2>
+<p></p>
 <div class="row">
   <div class="col-75">
     <div class="container">
@@ -125,49 +125,43 @@
           <div class="col-50">
             <h3>Billing Address</h3>
             <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+            <input type="text" id="fname" name="firstname" placeholder="">
             <label for="email"><i class="fa fa-envelope"></i> Email</label>
-            <input type="text" id="email" name="email" placeholder="john@example.com">
+            <input type="text" id="email" name="email" placeholder="">
             <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+            <input type="text" id="adr" name="address" placeholder="">
             <label for="city"><i class="fa fa-institution"></i> City</label>
-            <input type="text" id="city" name="city" placeholder="New York">
+            <input type="text" id="city" name="city" placeholder="">
 
             <div class="row">
               <div class="col-50">
                 <label for="state">State</label>
-                <input type="text" id="state" name="state" placeholder="NY">
+                <input type="text" id="state" name="state" placeholder="">
               </div>
               <div class="col-50">
                 <label for="zip">Zip</label>
-                <input type="text" id="zip" name="zip" placeholder="10001">
+                <input type="text" id="zip" name="zip" placeholder="">
               </div>
             </div>
           </div>
 
           <div class="col-50">
             <h3>Payment</h3>
-            <label for="fname">Accepted Cards</label>
-            <div class="icon-container">
-              <i class="fa fa-cc-visa" style="color:navy;"></i>
-              <i class="fa fa-cc-amex" style="color:blue;"></i>
-              <i class="fa fa-cc-mastercard" style="color:red;"></i>
-              <i class="fa fa-cc-discover" style="color:orange;"></i>
-            </div>
+            
             <label for="cname">Name on Card</label>
-            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+            <input type="text" id="cname" name="cardname" placeholder="">
             <label for="ccnum">Credit card number</label>
-            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+            <input type="text" id="ccnum" name="cardnumber" placeholder="">
             <label for="expmonth">Exp Month</label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+            <input type="text" id="expmonth" name="expmonth" placeholder="">
             <div class="row">
               <div class="col-50">
                 <label for="expyear">Exp Year</label>
-                <input type="text" id="expyear" name="expyear" placeholder="2018">
+                <input type="text" id="expyear" name="expyear" placeholder="">
               </div>
               <div class="col-50">
                 <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="352">
+                <input type="text" id="cvv" name="cvv" placeholder="">
               </div>
             </div>
           </div>
@@ -180,12 +174,15 @@
           $ticketCount = $_POST['ticketcountdropdown'];
           $currentusername = $_POST['username'];
           $eventName = $_POST['eventname'];
+          $ticketPrice = $_POST['ticketprice'];
         ?>
 
         <input type="hidden" name="useremail" value="<?php echo $useremail; ?>">
         <input type="hidden" name="eventID" value="<?php echo $eventID; ?>">
         <input type="hidden" name="ticketcountdropdown" value="<?php echo $ticketCount; ?>">
         <input type="hidden" name="username" value="<?php echo $currentusername; ?>">
+        <input type="hidden" name="eventname" value="<?php echo $eventName; ?>">
+        <input type="hidden" name="ticketprice" value="<?php echo $ticketPrice; ?>">
 
         <label>
           <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
@@ -199,13 +196,14 @@
   </div>
   <div class="col-25">
     <div class="container">
-      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
-      <p><a href="#">Product 1</a> <span class="price">$15</span></p>
-      <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-      <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-      <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+      <h4>Purchase Summery</h4>
+      <p>Event Name <span class="price"><b><?php echo $eventName; ?></b></span></p>
+      <p>Single Ticket Price <span class="price"><?php echo $ticketPrice; ?> LKR</span></p>
+      <p>Number of Tickets<span class="price"><?php echo $ticketCount; ?> Tickets</span></p>
+      <p>Additional Fees<span class="price">00 LKR</span></p>
+
       <hr>
-      <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+      <p>Total <span class="price" style="color:black"><b><?php $totalPrice=$ticketPrice*$ticketCount; echo $totalPrice; ?> LKR</b></span></p>
     </div>
   </div>
 </div>

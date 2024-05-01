@@ -127,7 +127,7 @@
                             var animation = bodymovin.loadAnimation({
                                 container: document.getElementById('animationContainer'),
                                 renderer: 'svg',
-                                loop: true,
+                                loop: false,
                                 autoplay: true,
                                 path: 'assets/json/medal_success.json'
                             });

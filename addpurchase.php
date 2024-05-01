@@ -17,10 +17,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $ticketCount = mysqli_real_escape_string($con, $_POST["ticketcountdropdown"]);
             $currentusername = mysqli_real_escape_string($con, $_POST["username"]);
             $cvv = mysqli_real_escape_string($con, $_POST["cvv"]);
+            $eventName = mysqli_real_escape_string($con, $_POST["eventname"]);
+            $ticketPrice = mysqli_real_escape_string($con, $_POST["ticketprice"]);
 
             if ($cvv === '233') 
             {
-                $sql = "insert into ticketpurchasedetails (purchDate, ticketCount, userEmail, eventID) values(NOW(),'{$ticketCount}','{$userEmail}','{$eventID}')";
+                $sql = "insert into ticketpurchasedetails (purchDate, ticketCount, ticketPrice, userEmail, eventID) values(NOW(),'{$ticketCount}','{$ticketPrice}','{$userEmail}','{$eventID}')";
                 $result = mysqli_query($con, $sql);
 
                 $to         = $userEmail;
@@ -38,20 +40,110 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
                 if($result) {
-                    $popupStatus = 1;
-                    //header("Location: profile.php?username=" . urlencode($currentUserName) . "&useremail=" .urlencode($userEmail) . "&popupStatus=" .urlencode($popupStatus));
-                    exit();
-                    
+                    $totalPrice = $ticketPrice*$ticketCount;
+                    echo "
+                    <!DOCTYPE html>
+                    <head>
+                        <style>
+                            #event-add-success-pg {
+                                font-family:Arial, Helvetica, sans-serif;
+                                display: flex;
+                                justify-content: center; 
+                                align-items: center;
+                                align-content: center;
+                                height: 100vh;
+                                margin: 0;
+                            }
+                            
+                            .event-added-details {
+                                text-align: center;
+                            }
+
+                            .event-added-details .animation {
+                                display: inline-block;
+                                
+                                width: 100px;
+                                height: 100px;
+                            }
+                            
+                            .event-added-details img {
+                                display: inline-block;
+                                
+                                width: 100px;
+                                height: 100px;
+                            }
+                            
+                            .event-added-details h4{
+                                font-weight: 300;
+                                color: grey;
+                            }
+                            
+                            .goto-buttons {
+                                display: flex;
+                                justify-content: center;
+                            }
+                            
+                            .event-added-details button {
+                                font-size: 15px;
+                                color: rgb(0, 0, 0);
+                                width: 165px;
+                                padding: 10px 10px 10px 10px;
+                                background-color: transparent;
+                                border-radius: 10px;
+                                border-width: 2px;
+                                margin: 10px 15px;
+                                border-color: rgb(0, 0, 0);
+                                transition: 0.3s ease;
+                            }
+                            
+                            .event-added-details button:hover {
+                                color: white;
+                                background-color: rgb(39, 39, 39);
+                            }
+                        </style>
+                        <script src='https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.9/lottie.min.js'></script>
+                    </head>
+                    <body id='event-add-success-pg'>
+                        <div class='event-added-details'>
+                        <div id='animationContainer' class='animation' style='width: 250px; height: 250px;'></div>
+                            <script>
+                                var animation = bodymovin.loadAnimation({
+                                    container: document.getElementById('animationContainer'),
+                                    renderer: 'svg',
+                                    loop: false,
+                                    autoplay: true,
+                                    path: 'assets/json/blue_success.json'
+                                });
+                            </script>
+                            <h2>Your $ticketCount Tickets Purchase For $eventName is Successfull. </h2>
+                            <h4>Ticket Amount: $ticketCount | Single Ticket Price: $ticketPrice LKR</h4>
+                            
+                            <h3>Total Amount: $totalPrice LKR</h3>
+                            <h4>You'll Recieve the Confimation Email Shortly! If not, Please Contact the StagePass Team.</h4>
+                            
+                            <div class='goto-buttons'>
+                                <button onclick='goBack()'>Done</button>
+                            </div>
+
+                            <script>
+                                function goBack() {
+                                    window.history.back(); // Simulate clicking the browser\'s back button
+                                }
+                            </script>
+                            
+                    </body>
+                    </html>
+                    ";
                 }
                 else
                 {
                     echo "Error";
                 }
-                } 
-                else 
-                {
+            } 
+            else 
+            {
                     
-                }
+            }
 
                 /*if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Check if the dropdown value is set and not empty

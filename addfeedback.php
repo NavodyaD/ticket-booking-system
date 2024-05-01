@@ -127,7 +127,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                             text-align: center;
                         }
                         
-                        .event-added-details #animationContainer {
+                        .event-added-details .animation {
                             display: inline-block;
                             
                             width: 100px;
@@ -170,7 +170,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 </head>
                 <body id='event-add-success-pg'>
                     <div class='event-added-details'>
-                        <div id='animationContainer'></div>
+                        <div id='animationContainer' class='animation'></div>
                         <script>
                             var animation = bodymovin.loadAnimation({
                                 container: document.getElementById('animationContainer'),

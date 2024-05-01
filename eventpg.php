@@ -245,6 +245,7 @@
                 <input type="hidden" name="useremail" value="<?php echo $useremail; ?>">
                 <input type="hidden" name="username" value="<?php echo $currentusername; ?>">
                 <input type="hidden" name="eventname" value="<?php echo $eventName; ?>">
+                <input type="hidden" name="ticketprice" value="<?php echo $eventPrice; ?>">
 
                 <select name="ticketcountdropdown" id="ticketcountdropdown">
                     <option value="1">1 Ticket</option>
