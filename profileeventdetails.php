@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="profilestyle.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.9/lottie.min.js'></script>
 </head>
 <body>
     <section id="youreventdetails">
@@ -72,7 +73,7 @@
                     echo '</div>';
                     echo '</div>';
                     
-                    echo '<img src="assets/img/tickets.png">';
+                    echo "<div id='animationContainer' style='width: 100%; height: 250px;'></div>";
                     echo "<h2>Good News! " . $totalTicketSoldAmount . " Tickets Has Been Sold.</h2>";
                     echo "<h3> Ticket Price: LKR " . $row['eventPrice'] . "</h3>";
 
@@ -122,5 +123,15 @@
         }
         ?>
     </section>
+                        <script>
+                            var animation = bodymovin.loadAnimation({
+                                container: document.getElementById('animationContainer'),
+                                renderer: 'svg',
+                                loop: true,
+                                autoplay: true,
+                                path: 'assets/json/medal_success.json'
+                            });
+                        </script>
 </body>
 </html>
+                        

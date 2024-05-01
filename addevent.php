@@ -89,10 +89,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                             background-color: rgb(39, 39, 39);
                         }
                     </style>
+                    <script src='https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.9/lottie.min.js'></script>
                 </head>
                 <body id='event-add-success-pg'>
                     <div class='event-added-details'>
-                        <img src='assets/img/success_tick.png' alt=''>
+                    <div id='animationContainer' style='width: 250px; height: 250px;'></div>
+                        <script>
+                            var animation = bodymovin.loadAnimation({
+                                container: document.getElementById('animationContainer'),
+                                renderer: 'svg',
+                                loop: true,
+                                autoplay: true,
+                                path: 'assets/json/blue_success.json'
+                            });
+                        </script>
                         <h3>$eventName Event Added Successfully</h3>
                         <h4>Event Ticket Price: $eventPrice LKR | Number of Tickets: $eventTktAmount</h4>
                         <h4>Event Location: $eventLoca LKR | Event Date: $eventDate</h4>

@@ -199,7 +199,7 @@
         </section>
 
         <script>
-            var countDownDate = new Date("Oct 15, 2024 00:00:00").getTime();
+            var countDownDate = new Date("<?php echo $eventDateTime; ?>").getTime();
             var x = setInterval(function(){
                 var now = new Date().getTime();
                 var distance = countDownDate -now;
@@ -226,7 +226,7 @@
             
         </script>
 
-        <form action="addpurchase.php" method="post">
+        <form action="paymentpg.php" method="post">
             <div class="ticket-type">
                 <p>Ticket Type: </p>
                 <select>
@@ -244,6 +244,7 @@
                 <input type="hidden" name="eventID" value="<?php echo $eventID; ?>">
                 <input type="hidden" name="useremail" value="<?php echo $useremail; ?>">
                 <input type="hidden" name="username" value="<?php echo $currentusername; ?>">
+                <input type="hidden" name="eventname" value="<?php echo $eventName; ?>">
 
                 <select name="ticketcountdropdown" id="ticketcountdropdown">
                     <option value="1">1 Ticket</option>

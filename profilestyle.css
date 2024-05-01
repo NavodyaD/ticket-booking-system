@@ -80,6 +80,16 @@ body {
     font-size: 14px;
 }
 
+#goto-eventdetails {
+    margin: 20px 80px;
+}
+
+#goto-eventdetails a {
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+}
+
 #post-event-section {
     margin: 80px 80px;
 }
@@ -292,8 +302,16 @@ body {
 }
 
 .image .nameDes {
-    width: 500px;
+    width: 1000px;
     text-align: start;
+}
+
+.image .nameDes h3 {
+    font-size: 28px;
+}
+
+.image .nameDes p {
+    line-height: 2;
 }
 
 .event-details-block .calculations {
