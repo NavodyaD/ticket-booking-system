@@ -35,7 +35,7 @@
             }
 
             if($RID == 1) {
-                header("Location: adminprofile.php?signname=" . urlencode($signname) . "&signemail=" .urlencode($loginemail));
+                header("Location: adminprofile.php?signemail=" .urlencode($loginemail));
                 exit();
             }
             else if($RID == 2)

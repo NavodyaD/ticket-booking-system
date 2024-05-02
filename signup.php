@@ -76,27 +76,30 @@
                 <input type="checkbox" id="checkbox" class="band-checkbox" name="checkbox">
                 </div>
                 <div class="input">
-                    <label>Name</label>
-                    <input type="text" id="name" name="signname">
-                </div>
-            
-                <div class="input">
-                    <label>Phone Number</label>
-                    <input type="text" id="phonenum" name="signphone">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="signname" required minlength="2" maxlength="50">
+                    
                 </div>
 
                 <div class="input">
-                    <label>Email</label>
-                    <input type="email" id="email" name="signemail">
+                    <label for="phonenum">Phone Number</label>
+                    <input type="tel" id="phonenum" name="signphone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
                 </div>
 
                 <div class="input">
-                    <label>Password</label>
-                    <input type="password" id="password" name="signpassword">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="signemail" required>
                 </div>
+
+                <div class="input">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="signpassword" required minlength="8">
+                </div>
+
                 <div class="button">
                     <input class="signup-btn" type="submit" value="Create Account">
                 </div>
+
                     
              </form>
             </div>
@@ -106,12 +109,12 @@
 
                 <div class="input">
                     <label>Email</label>
-                    <input type="email" id="email" name="loginemail">
+                    <input type="email" id="email" name="loginemail" required>
                 </div>
 
                 <div class="input">
                     <label>Password</label>
-                    <input type="password" id="password" name="loginpassword">
+                    <input type="password" id="password" name="loginpassword" required>
                 </div>
                 <div class="button">
                     <input class="signup-btn" type="submit" value="Login">

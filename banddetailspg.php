@@ -18,8 +18,8 @@
                     $useremail = urldecode($_GET['useremail']);
                     $username = $_GET['username'];
                 ?>
-                <li><a class="active" href="index.php?signname=<?php echo urlencode($username); ?>&signemail=<?php echo urlencode($useremail); ?>">Events</a></li>
-                <li><a href="bandpg.php?username=<?php echo urlencode($username); ?>&useremail=<?php echo urlencode($useremail); ?>">Bands</a></li>
+                <li><a href="index.php?signname=<?php echo urlencode($username); ?>&signemail=<?php echo urlencode($useremail); ?>">Events</a></li>
+                <li><a class="active" href="bandpg.php?username=<?php echo urlencode($username); ?>&useremail=<?php echo urlencode($useremail); ?>">Bands</a></li>
                 <li><a href="">Contact</a></li>
             </ul>
         </div>

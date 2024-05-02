@@ -27,6 +27,18 @@
 
         $eventPrice = $eventrow["eventPrice"];
         $eventDateTime = $eventrow["eventDateTime"];
+
+        $eventDateTime = strtotime($eventrow['eventDateTime']);
+
+        // Get the current time
+        $currentDateTime = time();
+
+        // Compare eventDateTime with currentDateTime
+        if ($eventDateTime > $currentDateTime) {
+            $eventStatus = 1;
+        } else {
+            $eventStatus = 0;
+        }
         
 
     }
@@ -174,7 +186,6 @@
         <div class="single-event-details">
 
         <section id="countdownSection">
-            <h3>The Event Will <span style="color: black;">Starts</span> In</h3>
             <div class="launch-time">
                 <div>
                     <p id="days">00</p>
@@ -196,6 +207,7 @@
                     <span>Seconds</span>
                 </div>
             </div>
+            <h3 style="color: black; margin-top: 30px;">This Event Is Already Over.</h3>
         </section>
 
         <script>
@@ -226,47 +238,7 @@
             
         </script>
 
-        <form action="paymentpg.php" method="post">
-            <div class="ticket-type">
-                <p>Ticket Type: </p>
-                <select>
-                    <option>General Ticket</option>
-                    <option>VIP Ticket</option>
-                    <option>V-VIP Ticket</option>
-                </select>
-            </div>
-            <div class="ticket-count">
-                <p>Select the Ticket Amount:</p>
-                <?php 
-                    $useremail = urldecode($_GET['useremail']);
-                    $currentusername = $_GET['username'];
-                ?>
-                <input type="hidden" name="eventID" value="<?php echo $eventID; ?>">
-                <input type="hidden" name="useremail" value="<?php echo $useremail; ?>">
-                <input type="hidden" name="username" value="<?php echo $currentusername; ?>">
-                <input type="hidden" name="eventname" value="<?php echo $eventName; ?>">
-                <input type="hidden" name="ticketprice" value="<?php echo $eventPrice; ?>">
-
-                <select name="ticketcountdropdown" id="ticketcountdropdown">
-                    <option value="1">1 Ticket</option>
-                    <option value="2">2 Tickets</option>
-                    <option value="3">3 Ticket</option>
-                    <option value="4">4 Ticket</option>
-                    <option value="5">5 Ticket</option>
-                </select>
-            </div>
-
-            <div class="ticket-price">
-                
-                <p> Price: <span id="eventPrice"> </span></p>
-                <h2 id="eventPriceShow"></h2>
-                
-            </div>
-            
-            <div>
-                    <button  type="submit">Buy Tickets</button>
-            </div>
-            </form>
+        
             
             
     </section>
@@ -283,12 +255,13 @@
         $username2 = $_GET['username'];
         echo '<div class="bandpost" onclick="redirectToDetails(\'' . urlencode($bandID) . '\', \'' . urlencode($useremail) . '\', \'' . urlencode($username2) . '\')">';
         ?>
-            <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($bandrow['bandImage']).'" />'; ?>
+            
             <script>
             function redirectToDetails(bandid, useremail, username) {
                 window.location.href = 'banddetailspg.php?bandid=' + encodeURIComponent(bandid) + '&useremail=' + encodeURIComponent(useremail) + '&username=' + encodeURIComponent(username);
             }
         </script>
+            <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($bandrow['bandImage']).'" />'; ?>
                 <div class="des">
                     <span>Colombo</span>
                     <?php echo "<h3>" . $bandrow['bandName'] . "</h3>"; ?>

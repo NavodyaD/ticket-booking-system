@@ -44,16 +44,16 @@
             //echo "<h4> Welcome, " . htmlspecialchars($useremail) . "!</h4>";
         ?>
         <h1>Reserve Your Music Space.</h1>
-        <p>Purchase Tickets for Music Events/Concerts, Outdoor Musicals, Musical Parties with Tickets.lk</p>
+        <p>Purchase Tickets for Music Events/Concerts, Outdoor Musicals, Musical Parties with StagePass</p>
         <button>How it works</button>
     </section>
 
     <section id="event1" class="section-p1">
         <h1 class="title1">Active Events</h1>
-        <p class="title1">Active evnts</p>
+        <p class="title1">Buy Tickets For Active Events.</p>
         <div class="event-container">
         <?php
-            $currentuseremail = $_GET['signemail'];  
+            $currentuseremail = $_GET['signemail'];
             $currentusername = $_GET['signname'];   
 
             $servername = "localhost";
@@ -65,7 +65,7 @@
 
             if($con) {
 
-                $sql = "SELECT eventID, eventName, eventPoster, eventImage, eventDateTime, eventLocation FROM eventdetails ORDER BY eventID DESC";
+                $sql = "SELECT eventID, eventName, eventPoster, eventImage, eventDateTime, eventLocation FROM eventdetails WHERE eventVisible = 1 AND STR_TO_DATE(eventDateTime, '%b %e, %Y %T') > NOW() ORDER BY eventID DESC";
                 $eventresult = $con->query($sql);
 
                 if($eventresult->num_rows > 0)
@@ -90,6 +90,67 @@
                         echo '</div>';
                     }
                 }
+
+                
+            }
+            else
+            {
+                echo "Connection to Database is failed";
+            }
+        ?>
+        <script>
+            function redirectToDetails(eventid, useremail, username) {
+                window.location.href = 'eventpg.php?eventid=' + encodeURIComponent(eventid) + '&useremail=' + encodeURIComponent(useremail) + '&username=' + encodeURIComponent(username);
+            }
+        </script>   
+        </div>
+        
+    </section>
+
+    <section id="event1" class="section-p1">
+        <h1 class="title1">Previous Events</h1>
+        <p class="title1">Events that already over. </p>
+        <div class="event-container">
+        <?php
+            $currentuseremail = $_GET['signemail'];
+            $currentusername = $_GET['signname'];
+
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "ticketBookingDB";
+
+            $con = mysqli_connect($servername, $username, $password, $dbname);
+
+            if($con) {
+
+                $pasteventsql = "SELECT eventID, eventName, eventPoster, eventImage, eventDateTime, eventLocation FROM eventdetails WHERE eventVisible = 1 AND STR_TO_DATE(eventDateTime, '%b %e, %Y %T') < NOW() ORDER BY eventID DESC";
+                $pasteventresult = $con->query($pasteventsql);
+
+                if($pasteventresult->num_rows > 0)
+                {
+                    while($pastEventRow = $pasteventresult->fetch_assoc())
+                    {
+                        echo '<div class="event" onclick="redirectToPreviousEDetails(\'' . urlencode($pastEventRow["eventID"]) . '\', \'' . urlencode($currentuseremail) . '\', \'' . urlencode($currentusername) . '\')">';
+                        echo '<img src="data:image/jpeg;base64,'.base64_encode($pastEventRow['eventPoster']).'" />';
+                            echo '<div class="des">';
+                                echo '<span>Colombo Events</span>';
+                                echo "<h4>" . $pastEventRow['eventName'] . "</h4>";
+                                echo '<span class="details">';
+                                    echo '<i class="fa fa-calendar" aria-hidden="true"></i>';
+                                    echo "<h5>" . $pastEventRow['eventDateTime'] . "</h5>";
+                                echo '</span>';
+                                echo '<span class="details">';
+                                    echo '<i class="fa fa-map-marker" aria-hidden="true"></i>';
+                                    echo "<h5>" . $pastEventRow['eventLocation'] . "</h5>";
+                                echo '</span>';
+                                
+                            echo '</div>';
+                        echo '</div>';
+                    }
+                }
+
+                
             }
             else
             {
@@ -101,12 +162,11 @@
                 window.location.href = 'eventpg.php?eventid=' + encodeURIComponent(eventid) + '&useremail=' + encodeURIComponent(useremail) + '&username=' + encodeURIComponent(username);
             }
         </script>
-            
-            
-            
-            
-            
-            
+        <script>
+            function redirectToPreviousEDetails(eventid, useremail, username) {
+                window.location.href = 'previouseventpg.php?eventid=' + encodeURIComponent(eventid) + '&useremail=' + encodeURIComponent(useremail) + '&username=' + encodeURIComponent(username);
+            }
+        </script>
         </div>
         
     </section>
@@ -173,3 +233,6 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+
+

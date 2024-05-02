@@ -511,7 +511,7 @@ footer .contact p{
     border-radius: 0px;
     cursor: pointer;
     box-shadow: 10px 10px 15px rgb(0, 0, 0,0.06);
-    margin: 0px 0;
+    margin: 25px 1px;
     transition: 0.2s ease;
 }
 

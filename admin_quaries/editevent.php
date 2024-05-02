@@ -101,8 +101,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <body id='event-add-success-pg'>
                         <div class='event-added-details'>
                             <img src='../assets/img/success_tick.png' alt=''>
-                            <h3> Band Added Successfully</h3>
-                            <h4>Band Price: LKR | Players Count:</h4>
+                            <h3> Event Edited Successfully</h3>
+                            <h4>Edits has beed saved.</h4>
                             
                             <div class='goto-buttons'>
                                 <button onclick='goBack()'>Done</button>

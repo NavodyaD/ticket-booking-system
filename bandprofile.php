@@ -159,11 +159,11 @@
                 <input type="hidden" name="useremail" value="<?php echo $useremail; ?>">
             <div class="input">
                 <label>Band Name</label>
-                <input type="text" id="bandname" name="bandname">
+                <input type="text" id="bandname" name="bandname" required>
             </div>
             <div class="input">
                 <label>Description</label>
-                <input type="text" id="banddes" name="banddes">
+                <input type="text" id="banddes" name="banddes" required>
             </div>
             <div class="input">
                 <label>Band Image</label>
@@ -171,19 +171,19 @@
             </div>
             <div class="input">
                 <label>Players Count</label>
-                <input type="number" id="playerscount" name="playerscount">
+                <input type="number" id="playerscount" name="playerscount" required>
             </div>
             <div class="input">
                 <label>Type</label>
-                <input type="text" id="bandtype" name="bandtype">
+                <input type="text" id="bandtype" name="bandtype" required>
             </div>
             <div class="input">
                 <label>Band Price</label>
-                <input type="text" id="bandprice" name="bandprice">
+                <input type="text" id="bandprice" name="bandprice" required>
             </div>
             <div class="input">
                 <label>Band Manager Phone</label>
-                <input type="text" id="bandphone" name="bandphone">
+                <input type="text" id="bandphone" name="bandphone" required>
             </div>
             <div class="band-post-button">
                 <button  type="submit">Create Band</button>

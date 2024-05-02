@@ -117,11 +117,11 @@
                 <input type="hidden" name="useremail" value="<?php echo $useremail; ?>">
                 <div class="input">
                 <label>Event Name</label>
-                <input type="text" id="eventname" name="eventname">
+                <input type="text" id="eventname" name="eventname" required>
                 </div>
                 <div class="input">
                 <label>Description</label>
-                <input type="text" id="eventdes" name="eventdes">
+                <input type="text" id="eventdes" name="eventdes" required>
                 </div>
                 <div class="input">
                 <label>Event Poster</label>
@@ -133,19 +133,19 @@
                 </div>
                 <div class="input">
                 <label>Ticket Price</label>
-                <input type="number" id="eventprice" name="eventprice">
+                <input type="number" id="eventprice" name="eventprice" required>
                 </div>
                 <div class="input">
                 <label>Ticket Amount</label>
-                <input type="number" id="eventticketamount" name="eventticketamount">
+                <input type="number" id="eventticketamount" name="eventticketamount" required>
                 </div>
                 <div class="input">
                 <label>Date & Time</label>
-                <input type="text" id="eventdate" name="eventdate">
+                <input type="text" id="eventdate" name="eventdate" required>
                 </div>
                 <div class="input">
                 <label>Location</label>
-                <input type="text" id="eventloca" name="eventloca">
+                <input type="text" id="eventloca" name="eventloca" required>
                 </div>
                 <div class="input">
                 <label>Location URL</label>
@@ -153,7 +153,7 @@
                 </div>
                 <div class="input">
                 <label>Band ID</label>
-                <input type="text" id="bandid" name="bandid">
+                <input type="text" id="bandid" name="bandid" required>
                 </div>
                 <div class="event-post-button">
                     <button  type="submit">Post Event</button>
