@@ -83,7 +83,7 @@
 
                 <div class="input">
                     <label for="phonenum">Phone Number</label>
-                    <input type="tel" id="phonenum" name="signphone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                    <input type="tel" id="phonenum" name="signphone" required>
                 </div>
 
                 <div class="input">

@@ -41,17 +41,14 @@
             const priceText = document.getElementById('eventPriceShow');
             const ticketPrice = <?php echo $eventPrice; ?>;
 
-            // Function to calculate total price
             function calculateTotalPrice() {
                 const ticketCount = parseInt(ticketcountdropdown.value);
                 const totalPrice = ticketCount * ticketPrice;
                 priceText.textContent = totalPrice.toFixed(2);
             }
 
-            // Calculate total price when the page loads
             calculateTotalPrice();
 
-            // Calculate total price when the dropdown value changes
             ticketcountdropdown.addEventListener('change', calculateTotalPrice);
         });
     </script>

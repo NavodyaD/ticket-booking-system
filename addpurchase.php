@@ -20,19 +20,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $eventName = mysqli_real_escape_string($con, $_POST["eventname"]);
             $ticketPrice = mysqli_real_escape_string($con, $_POST["ticketprice"]);
 
+            $totalTicketPrice = $ticketCount*$ticketPrice;
+
             if ($cvv === '233') 
             {
                 $sql = "insert into ticketpurchase (purchDate, ticketCount, ticketPrice, userEmail, eventID) values(NOW(),'{$ticketCount}','{$ticketPrice}','{$userEmail}','{$eventID}')";
                 $result = mysqli_query($con, $sql);
 
-                $to         = $userEmail;
-                $sender     = 'navodya0831@gmail.com';
-                $mail_subject = 'Tickets Purchase Successful';
+                $to         =  '';
+                $sender     = 'iamhirusha@gmail.com';
+                $mail_subject = 'Your StagePass Tickets Purchase Successful';
                 $email_body = '<p>Dear ' . $currentusername . '</p>';
-                $email_body .= '<p>You have purchased your tickets successfully!</p>';
-                $email_body .= '<p>Number of Tickets: ' . $ticketCount . '</p>';
-                $email_body .= '<p>Thank you for purchasing tickets from Tickets LK</p>';
-                $email_body .= '<p>Tickets LK Team</p>';
+                $email_body .= '<h3>You have purchased your tickets successfully!</h3>';
+                $email_body .= '<p>Number of Tickets: ' . $ticketCount . ' | Single Ticket Price: ' . $ticketPrice . ' LKR</p>';
+                $email_body .= '<h4>Total Price: ' . $totalTicketPrice . ' LKR</h4>';
+                $email_body .= '<p>Thank you for purchasing tickets from StagePass. You can use this email as the event entrance ticket. Our StagePass team members will be there.</p>';
+                $email_body .= '<p>At the entrance, original StagePass Email is needed. Screenshots are not allowed.</p>';
+                $email_body .= '<p>StagePass Team.</p>';
 
                 $header = "From: {$sender}\r\nContent-Type: text/html;";
 
