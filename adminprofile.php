@@ -91,7 +91,7 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $totalsql = "SELECT SUM(ticketCount * ticketPrice) AS totalAmount FROM ticketpurchasedetails";
+    $totalsql = "SELECT SUM(ticketCount * ticketPrice) AS totalAmount FROM ticketpurchase";
     $totalresult = $conn->query($totalsql);
 
 
@@ -116,13 +116,13 @@
         echo "0 results";
     }
 
-    $eventsql = "SELECT eventID, eventName, eventPrice, eventTicketAmount, eventDateTime, eventLocation, bandID FROM eventdetails";
+    $eventsql = "SELECT eventID, eventName, eventPrice, eventTicketAmount, eventDateTime, eventLocation, bandID FROM eventtb";
     $eventresult = $conn->query($eventsql);
 
-    $bandsql = "SELECT bandID, bandName, playersCount, bandType, bandPrice, bandPhone FROM banddetails";
+    $bandsql = "SELECT bandID, bandName, playersCount, bandType, bandPrice, bandPhone FROM band";
     $bandresult = $conn->query($bandsql);
 
-    $purchsql = "SELECT purchaseID, purchDate, ticketCount, ticketPrice, userEmail, eventID FROM ticketpurchasedetails";
+    $purchsql = "SELECT purchaseID, purchDate, ticketCount, ticketPrice, userEmail, eventID FROM ticketpurchase";
     $purchaseresult = $conn->query($purchsql);
 
     echo '<h2>Posted Events</h2>';

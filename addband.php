@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $band_description = mysqli_real_escape_string($con, $bandDes);
 
-            $sql = "insert into banddetails (userEmail, bandName, bandDes, bandImage, playersCount, bandType, bandPrice, bandPhone) values('$userEmail','$bandName','$band_description','$imgFileData','$playersCount','$bandType','$bandPrice','$bandPhone')";
+            $sql = "insert into band (userEmail, bandName, bandDes, bandImage, playersCount, bandType, bandPrice, bandPhone) values('$userEmail','$bandName','$band_description','$imgFileData','$playersCount','$bandType','$bandPrice','$bandPhone')";
             $result = $con->query($sql);
         
             if($result) {

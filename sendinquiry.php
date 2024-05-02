@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $inqDescription = mysqli_real_escape_string($con, $inqDes);
         
-            $result = mysqli_query($con,"insert into bandinquirydetails (userEmail, userName, inqTitle, inqDes, inqDate, inqLocation, inqPhone, bandID) values('$userEmail','$inqUsername','$inqSubject','$inqDescription','$inqDate','$inqLocation','$inqPhone','$bandID')");
+            $result = mysqli_query($con,"insert into bandinquiry (userEmail, userName, inqTitle, inqDes, inqDate, inqLocation, inqPhone, bandID) values('$userEmail','$inqUsername','$inqSubject','$inqDescription','$inqDate','$inqLocation','$inqPhone','$bandID')");
         
             if($result) {
                 echo "

@@ -20,7 +20,7 @@
     if($con) {
         $eventID = $_GET['eventid'];
 
-        $sql = "SELECT eventName, eventDes, eventPrice, eventImage, eventDateTime, eventLocation, eventLocationURL, bandID FROM eventdetails WHERE eventID = $eventID";
+        $sql = "SELECT eventName, eventDes, eventPrice, eventImage, eventDateTime, eventLocation, eventLocationURL, bandID FROM eventtb WHERE eventID = $eventID";
         $eventdetailsresult = $con->query($sql);
 
         $eventrow = $eventdetailsresult->fetch_assoc();
@@ -135,7 +135,7 @@
     if($con) {
         $eventID = $_GET['eventid'];
 
-        $sql = "SELECT eventName, eventDes, eventPrice, eventImage, eventDateTime, eventLocation, eventLocationURL, bandID FROM eventdetails WHERE eventID = $eventID";
+        $sql = "SELECT eventName, eventDes, eventPrice, eventImage, eventDateTime, eventLocation, eventLocationURL, bandID FROM eventtb WHERE eventID = $eventID";
         $eventdetailsresult = $con->query($sql);
 
         $eventrow = $eventdetailsresult->fetch_assoc();
@@ -148,7 +148,7 @@
         $eventLocationURL = $eventrow["eventLocationURL"];
         $bandID = $eventrow["bandID"];
         
-        $bandsql = "SELECT bandName, bandDes, bandImage, playersCount, bandType FROM banddetails WHERE bandID = $bandID";
+        $bandsql = "SELECT bandName, bandDes, bandImage, playersCount, bandType FROM band WHERE bandID = $bandID";
         $banddetailsresult = $con->query($bandsql);
 
         $bandrow = $banddetailsresult->fetch_assoc();
@@ -286,7 +286,7 @@
     <section id="map">
         <h3>Location</h3>
         <div class="map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.5647042071987!2d80.64516877581919!3d7.290264413776666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae3663118611d25%3A0xbad64cce500924c7!2sDharmaraja%20College%20Auditorium!5e0!3m2!1sen!2slk!4v1713901719398!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <?php echo $eventLocationURL; ?>
         </div>
     </section>
 
@@ -376,7 +376,7 @@
 
             if($con) {
 
-                $sql = "SELECT feedbackText, starCount, userEmail, userName FROM eventfeedbackdetails WHERE eventID = $eventID ORDER BY eventFdID DESC";
+                $sql = "SELECT feedbackText, starCount, userEmail, userName FROM eventfeedback WHERE eventID = $eventID ORDER BY eventFdID DESC";
                 $feedbackResult = $con->query($sql);
 
                 if($feedbackResult->num_rows > 0)

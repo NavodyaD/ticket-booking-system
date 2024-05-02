@@ -30,7 +30,7 @@
         $RID = 2;
     }
 
-    $result = mysqli_query($con,"insert into userdetails values('$signname','$signphone','$signemail','$signpassword','$RID')");
+    $result = mysqli_query($con,"insert into users values('$signname','$signphone','$signemail','$signpassword','$RID')");
 
     if($result) {
         if ($RID == 3) {

@@ -52,7 +52,7 @@
 
             if($con) {
 
-                $sql = "SELECT bandID, bandName, bandDes, bandImage, bandType, bandPrice, playersCount FROM banddetails";
+                $sql = "SELECT bandID, bandName, bandDes, bandImage, bandType, bandPrice, playersCount FROM band";
                 $bandresult = $con->query($sql);
 
                 if($bandresult->num_rows > 0)

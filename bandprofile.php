@@ -37,15 +37,12 @@
 
             if($con) {
 
-                $sql = "SELECT bandName, bandImage, bandPrice, playersCount, bandType FROM banddetails WHERE userEmail = ?";
+                $sql = "SELECT bandName, bandImage, bandPrice, playersCount, bandType FROM band WHERE userEmail = ?";
                 $stmt = $con->prepare($sql);
-                // Bind the parameter to the placeholder
                 $stmt->bind_param("s", $currentuseremail);
 
-                // Execute the prepared statement
                 $stmt->execute();
 
-                // Get the result set
                 $bandresult = $stmt->get_result();
 
                 if($bandresult->num_rows > 0)
@@ -53,7 +50,7 @@
                     while($row = $bandresult->fetch_assoc())
                     {
 
-                        //$eventsql = "SELECT eventName, eventPrice, eventDateTime, eventPoster FROM eventDetails WHERE eventID = $eventID";
+                        //$eventsql = "SELECT eventName, eventPrice, eventDateTime, eventPoster FROM eventtb WHERE eventID = $eventID";
                         //$eventDetailsResult = $con->query($eventsql);
                         //$eventDetailsRow = $eventDetailsResult->fetch_assoc();
 

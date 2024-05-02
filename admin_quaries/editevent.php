@@ -20,22 +20,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             switch ($editColumn) {
                 case 1:
-                    $sql = "UPDATE eventdetails SET eventName = '$newValue' WHERE eventID = $eventIdToEdit";
+                    $sql = "UPDATE eventtb SET eventName = '$newValue' WHERE eventID = $eventIdToEdit";
                     break;
                 case 2:
-                    $sql = "UPDATE eventdetails SET eventPrice = '$newValue' WHERE eventID = $eventIdToEdit";
+                    $sql = "UPDATE eventtb SET eventPrice = '$newValue' WHERE eventID = $eventIdToEdit";
                     break;
                 case 3:
-                    $sql = "UPDATE eventdetails SET eventTicketAmount = '$newValue' WHERE eventID = $eventIdToEdit";
+                    $sql = "UPDATE eventtb SET eventTicketAmount = '$newValue' WHERE eventID = $eventIdToEdit";
                     break;
                 case 4:
-                    $sql = "UPDATE eventdetails SET eventDateTime = '$newValue' WHERE eventID = $eventIdToEdit";
+                    $sql = "UPDATE eventtb SET eventDateTime = '$newValue' WHERE eventID = $eventIdToEdit";
                     break;
                 case 5:
-                    $sql = "UPDATE eventdetails SET eventLocation = '$newValue' WHERE eventID = $eventIdToEdit";
+                    $sql = "UPDATE eventtb SET eventLocation = '$newValue' WHERE eventID = $eventIdToEdit";
                     break;
                 case 6:
-                    $sql = "UPDATE eventdetails SET bandID = '$newValue' WHERE eventID = $eventIdToEdit";
+                    $sql = "UPDATE eventtb SET bandID = '$newValue' WHERE eventID = $eventIdToEdit";
                     break;
                 default:
                     echo "Something Went Wrong";

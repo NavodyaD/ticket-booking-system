@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         
             $eventIdToDelete = $_POST["eventid"];
 
-            $sql = "UPDATE eventdetails SET eventVisible = 0 WHERE eventID = $eventIdToDelete";
+            $sql = "UPDATE eventtb SET eventVisible = 0 WHERE eventID = $eventIdToDelete";
 
             $result = $con->query($sql);
         

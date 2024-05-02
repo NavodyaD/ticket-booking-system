@@ -38,7 +38,7 @@
 
         if($con) {
 
-            $sql = "SELECT eventID, eventName, eventDes, eventPoster, eventPrice, eventTicketAmount, eventDateTime, eventLocation, bandID FROM eventdetails WHERE userEmail = ?";
+            $sql = "SELECT eventID, eventName, eventDes, eventPoster, eventPrice, eventTicketAmount, eventDateTime, eventLocation, bandID FROM eventtb WHERE userEmail = ?";
             $stmt = $con->prepare($sql);
             $stmt->bind_param("s", $currentuseremail);
             $stmt->execute();
@@ -50,14 +50,12 @@
                 {
                     $eventID = $row['eventID'];
 
-                    $ticketsql = "SELECT ticketCount, purchDate FROM ticketpurchasedetails WHERE eventID = $eventID";
+                    $ticketsql = "SELECT ticketCount, purchDate FROM ticketpurchase WHERE eventID = $eventID";
                     $ticketSoldResult = $con->query($ticketsql);
 
                     $totalTicketSoldAmount = 0;
 
-                    // Check if there are any results
                     if (mysqli_num_rows($ticketSoldResult) > 0) {
-                        // Loop through each row and calculate the total ticket amount
                         while ($countRow = mysqli_fetch_assoc($ticketSoldResult)) {
                             // Add the ticket amount to the total
                             $totalTicketSoldAmount += $countRow['ticketCount'];

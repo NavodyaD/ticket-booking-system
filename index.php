@@ -65,7 +65,7 @@
 
             if($con) {
 
-                $sql = "SELECT eventID, eventName, eventPoster, eventImage, eventDateTime, eventLocation FROM eventdetails WHERE eventVisible = 1 AND STR_TO_DATE(eventDateTime, '%b %e, %Y %T') > NOW() ORDER BY eventID DESC";
+                $sql = "SELECT eventID, eventName, eventPoster, eventImage, eventDateTime, eventLocation FROM eventtb WHERE eventVisible = 1 AND STR_TO_DATE(eventDateTime, '%b %e, %Y %T') > NOW() ORDER BY eventID DESC";
                 $eventresult = $con->query($sql);
 
                 if($eventresult->num_rows > 0)
@@ -124,7 +124,7 @@
 
             if($con) {
 
-                $pasteventsql = "SELECT eventID, eventName, eventPoster, eventImage, eventDateTime, eventLocation FROM eventdetails WHERE eventVisible = 1 AND STR_TO_DATE(eventDateTime, '%b %e, %Y %T') < NOW() ORDER BY eventID DESC";
+                $pasteventsql = "SELECT eventID, eventName, eventPoster, eventImage, eventDateTime, eventLocation FROM eventtb WHERE eventVisible = 1 AND STR_TO_DATE(eventDateTime, '%b %e, %Y %T') < NOW() ORDER BY eventID DESC";
                 $pasteventresult = $con->query($pasteventsql);
 
                 if($pasteventresult->num_rows > 0)

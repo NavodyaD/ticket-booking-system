@@ -20,19 +20,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             switch ($editColumn) {
                 case 1:
-                    $sql = "UPDATE banddetails SET bandName = '$newValue' WHERE bandID = $eventIdToEdit";
+                    $sql = "UPDATE band SET bandName = '$newValue' WHERE bandID = $eventIdToEdit";
                     break;
                 case 2:
-                    $sql = "UPDATE banddetails SET playersCount = '$newValue' WHERE bandID = $eventIdToEdit";
+                    $sql = "UPDATE band SET playersCount = '$newValue' WHERE bandID = $eventIdToEdit";
                     break;
                 case 3:
-                    $sql = "UPDATE banddetails SET bandType = '$newValue' WHERE bandID = $eventIdToEdit";
+                    $sql = "UPDATE band SET bandType = '$newValue' WHERE bandID = $eventIdToEdit";
                     break;
                 case 4:
-                    $sql = "UPDATE banddetails SET bandPrice = '$newValue' WHERE bandID = $eventIdToEdit";
+                    $sql = "UPDATE band SET bandPrice = '$newValue' WHERE bandID = $eventIdToEdit";
                     break;
                 case 5:
-                    $sql = "UPDATE banddetails SET bandPhone = '$newValue' WHERE bandID = $eventIdToEdit";
+                    $sql = "UPDATE band SET bandPhone = '$newValue' WHERE bandID = $eventIdToEdit";
                     break;
                 default:
                     echo "Something Went Wrong";
@@ -99,6 +99,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class='event-added-details'>
                             <img src='../assets/img/success_tick.png' alt=''>
                             <h3> Band Edited Successfully</h3>
+                            <h4>Edits has beed saved.</h4>
                             
                             <div class='goto-buttons'>
                                 <button onclick='goBack()'>Done</button>

@@ -41,7 +41,7 @@
     if($con) {
         $bandID = $_GET['bandid'];
 
-        $sql = "SELECT bandName, bandDes, bandPrice, bandImage, playersCount, bandType, bandPhone FROM banddetails WHERE bandID = $bandID";
+        $sql = "SELECT bandName, bandDes, bandPrice, bandImage, playersCount, bandType, bandPhone FROM band WHERE bandID = $bandID";
         $banddetailsresult = $con->query($sql);
 
         $bandrow = $banddetailsresult->fetch_assoc();
@@ -217,7 +217,7 @@
 
             if($con) {
 
-                $sql = "SELECT feedbackText, starCount, userEmail, userName FROM bandfeedbackdetails WHERE bandID = $bandID";
+                $sql = "SELECT feedbackText, starCount, userEmail, userName FROM bandfeedback WHERE bandID = $bandID";
                 $feedbackResult = $con->query($sql);
 
                 if($feedbackResult->num_rows > 0)

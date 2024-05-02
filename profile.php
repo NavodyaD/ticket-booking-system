@@ -26,53 +26,50 @@
             <h3>Your Purchase History</h3>
             <p>Events you have purchased</p>
             <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "ticketBookingDB";
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "ticketBookingDB";
 
-            $con = mysqli_connect($servername, $username, $password, $dbname);
+                $con = mysqli_connect($servername, $username, $password, $dbname);
 
-            if($con) {
+                if($con) {
 
-                $sql = "SELECT purchDate, ticketCount, eventID FROM ticketpurchasedetails WHERE userEmail = ?";
-                $stmt = $con->prepare($sql);
-                // Bind the parameter to the placeholder
-                $stmt->bind_param("s", $currentuseremail);
+                    $sql = "SELECT purchDate, ticketCount, eventID FROM ticketpurchase WHERE userEmail = ?";
+                    $stmt = $con->prepare($sql);
+                    $stmt->bind_param("s", $currentuseremail);
 
-                // Execute the prepared statement
-                $stmt->execute();
+                    $stmt->execute();
 
-                // Get the result set
-                $purchresult = $stmt->get_result();
-                if($purchresult->num_rows > 0)
-                {
-                    while($row = $purchresult->fetch_assoc())
+                    $purchresult = $stmt->get_result();
+                    if($purchresult->num_rows > 0)
                     {
-                        $eventID = $row['eventID'];
+                        while($row = $purchresult->fetch_assoc())
+                        {
+                            $eventID = $row['eventID'];
 
-                        $eventsql = "SELECT eventName, eventPrice, eventDateTime, eventPoster FROM eventDetails WHERE eventID = $eventID";
-                        $eventDetailsResult = $con->query($eventsql);
-                        $eventDetailsRow = $eventDetailsResult->fetch_assoc();
+                            $eventsql = "SELECT eventName, eventPrice, eventDateTime, eventPoster FROM eventtb WHERE eventID = $eventID";
+                            $eventDetailsResult = $con->query($eventsql);
+                            $eventDetailsRow = $eventDetailsResult->fetch_assoc();
 
-                        echo '<div class="purchased-event">';
-                        echo '<div>';
-                        echo '<img src="data:image/jpeg;base64,'.base64_encode($eventDetailsRow['eventPoster']).'" />';
-                        echo '</div>';
-                        echo '<div>';
-                        echo "<h4>" . $eventDetailsRow['eventName'] . "</h4>";
-                        echo "<p>Event Datee: " . $eventDetailsRow['eventDateTime'] . "</p>";
-                        echo "<p> Purchase Date: " . $row['purchDate'] . "</p>";
-                        echo "<p> LKR " . $eventDetailsRow['eventPrice'] . " x " . $row['ticketCount'] . "</p>";
-                        echo '</div>';
-                        echo '</div>';
+                            echo '<div class="purchased-event">';
+                            echo '<div>';
+                            echo '<img src="data:image/jpeg;base64,'.base64_encode($eventDetailsRow['eventPoster']).'" />';
+                            echo '</div>';
+                            echo '<div>';
+                            echo "<h4>" . $eventDetailsRow['eventName'] . "</h4>";
+                            echo "<p>Event Datee: " . $eventDetailsRow['eventDateTime'] . "</p>";
+                            echo "<p> Purchase Date: " . $row['purchDate'] . "</p>";
+                            echo "<p> LKR " . $eventDetailsRow['eventPrice'] . " x " . $row['ticketCount'] . "</p>";
+                            echo '</div>';
+                            echo '</div>';
+                        }
                     }
                 }
-            }
-            else
-            {
-                echo "Connection to Database is failed";
-            }
+                else
+                {
+                    echo "Connection to Database is failed";
+                }
             ?>
         </div>
     </section>

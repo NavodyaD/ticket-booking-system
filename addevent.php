@@ -33,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $event_description = mysqli_real_escape_string($con, $eventDes);
         
-            $result = mysqli_query($con,"insert into eventdetails (userEmail, eventName, eventDes, eventPoster, eventImage, eventPrice, eventTicketAmount, eventDateTime, eventLocation, eventLocationURL, bandID) values('$userEmail','$eventName','$event_description','$imgPosterFileData','$imgFileData','$eventPrice','$eventTktAmount','$eventDate','$eventLoca','$eventLocaUrl','$bandID')");
+            $result = mysqli_query($con,"insert into eventtb (userEmail, eventName, eventDes, eventPoster, eventImage, eventPrice, eventTicketAmount, eventDateTime, eventLocation, eventLocationURL, bandID) values('$userEmail','$eventName','$event_description','$imgPosterFileData','$imgFileData','$eventPrice','$eventTktAmount','$eventDate','$eventLoca','$eventLocaUrl','$bandID')");
         
             if($result) {
                 echo "

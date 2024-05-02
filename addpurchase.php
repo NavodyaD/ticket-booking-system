@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($cvv === '233') 
             {
-                $sql = "insert into ticketpurchasedetails (purchDate, ticketCount, ticketPrice, userEmail, eventID) values(NOW(),'{$ticketCount}','{$ticketPrice}','{$userEmail}','{$eventID}')";
+                $sql = "insert into ticketpurchase (purchDate, ticketCount, ticketPrice, userEmail, eventID) values(NOW(),'{$ticketCount}','{$ticketPrice}','{$userEmail}','{$eventID}')";
                 $result = mysqli_query($con, $sql);
 
                 $to         = $userEmail;

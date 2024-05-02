@@ -12,7 +12,7 @@
         $loginemail = $_POST['loginemail'];
         $loginpassword = $_POST['loginpassword'];
 
-        $res = mysqli_query($con,"SELECT *FROM userdetails WHERE signEmail='$loginemail' AND signPassword='$loginpassword'");
+        $res = mysqli_query($con,"SELECT *FROM users WHERE signEmail='$loginemail' AND signPassword='$loginpassword'");
         $status=false;
 
         while($row = mysqli_fetch_array($res)) {
@@ -20,14 +20,13 @@
         }
 
         if($status) {
-            // Get username from useremail
-            $nameRes = mysqli_query($con,"SELECT *FROM userdetails WHERE signEmail='$loginemail' AND signPassword='$loginpassword'");
+            $nameRes = mysqli_query($con,"SELECT *FROM users WHERE signEmail='$loginemail' AND signPassword='$loginpassword'");
         
             while($row=mysqli_fetch_array($nameRes)) {
                 $signname=$row['userName'];
             }
 
-            $roleIdRes = mysqli_query($con,"SELECT *FROM userdetails WHERE signEmail='$loginemail' AND signPassword='$loginpassword'");
+            $roleIdRes = mysqli_query($con,"SELECT *FROM users WHERE signEmail='$loginemail' AND signPassword='$loginpassword'");
 
 
             while($row=mysqli_fetch_array($roleIdRes)) {
